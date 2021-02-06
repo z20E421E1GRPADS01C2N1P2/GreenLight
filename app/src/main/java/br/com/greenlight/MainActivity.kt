@@ -35,23 +35,4 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, drawerLayout)
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.dashboard_menu, menu)
-//        return true
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        var msg = ""
-//        when(item.itemId){
-//            R.id.linkLoginMenuDashboard -> msg = "Essa tela ainda não está implementada"
-//            R.id.linkUserProfileMenuDashboard -> msg = "Essa tela ainda não está implementada"
-//            R.id.linkCarTripsMenuDashboard -> msg = "Essa tela ainda não está implementada"
-//            R.id.linkListOfVehiclesMenuDashboard -> msg = "Essa tela ainda não está implementada"
-//            R.id.linkLogoutMenuDashboard -> msg = "Essa tela ainda não está implementada"
-//        }
-//
-//        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
-//        return true
-//    }
 }
