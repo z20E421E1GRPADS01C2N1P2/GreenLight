@@ -1,7 +1,8 @@
-package lucassamel.br.greenlight
+package br.com.greenlight
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import br.com.greenlight.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

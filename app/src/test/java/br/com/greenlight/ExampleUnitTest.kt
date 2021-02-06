@@ -1,4 +1,4 @@
-package lucassamel.br.greenlight
+package br.com.greenlight
 
 import org.junit.Test
 
