@@ -2,18 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/loginFragment"
-        android:title="@string/link_Login_Menu" />
-    <item
         android:id="@+id/userProfileFragment"
         android:title="@string/link_User_Profile_Menu" />
+    <item
+        android:id="@+id/dashboardFragment"
+        android:title="@string/dashboard_screen" />
     <item
         android:id="@+id/vehicleTripFragment"
         android:title="@string/link_Car_Trips_Menu" />
     <item
-        android:id="@+id/vehicleFragment"
-        android:title="@string/link_Vehicle_Register_Menu" />
-    <item
         android:id="@+id/logoutFragment"
         android:title="@string/link_Logout_Menu" />
+
 </menu>

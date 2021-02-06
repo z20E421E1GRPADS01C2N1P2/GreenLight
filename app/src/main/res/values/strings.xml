@@ -1,7 +1,12 @@
 <resources>
-    <string name="app_name">GreenLight</string>
+    <string name="app_name">Green Light</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Green Light</string>
+    <string name="dashboard_screen">Dashboard</string>
+    <string name="login_screen">Login</string>
+    <string name="user_profile_screen">Perfil</string>
+    <string name="vehicle_list_screen">Seus veículos</string>
+    <string name="vehicle_trips_screen">Suas viagens</string>
     <string name="link_User_Profile_Menu">Perfil</string>
     <string name="link_Login_Menu">Login</string>
     <string name="link_Logout_Menu">Logout</string>
