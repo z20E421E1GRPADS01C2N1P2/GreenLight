@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/linkLoginMenuDashboard"
+        android:title="@string/link_Login_Menu" />
+    <item
+        android:id="@+id/linkUserProfileMenuDashboard"
+        android:title="@string/link_User_Profile_Menu" />
+    <item
+        android:id="@+id/linkCarTripsMenuDashboard"
+        android:title="@string/link_Car_Trips_Menu" />
+    <item
+        android:id="@+id/linkListOfVehiclesMenuDashboard"
+        android:title="@string/link_Vehicle_Register_Menu" />
+    <item
+        android:id="@+id/linkLogoutMenuDashboard"
+        android:title="@string/link_Logout_Menu" />
+</menu>

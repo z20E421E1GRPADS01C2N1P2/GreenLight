@@ -2,4 +2,9 @@
     <string name="app_name">GreenLight</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="link_User_Profile_Menu">Perfil</string>
+    <string name="link_Login_Menu">Login</string>
+    <string name="link_Logout_Menu">Logout</string>
+    <string name="link_Vehicle_Register_Menu">Seus veículos</string>
+    <string name="link_Car_Trips_Menu">Suas Viagens</string>
 </resources>
