@@ -1,20 +1,20 @@
 package br.com.greenlight.ui.vehicle.form
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import br.com.greenlight.R
+import com.google.firebase.firestore.FirebaseFirestore
+
 
 class VehicleFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = VehicleFragment()
-    }
-
     private lateinit var viewModel: VehicleViewModel
+
+    var db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
