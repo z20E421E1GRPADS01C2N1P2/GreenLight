@@ -1,4 +1,4 @@
-package br.com.greenlight.viewModels
+package br.com.greenlight.ui.trip
 
 import androidx.lifecycle.ViewModel
 

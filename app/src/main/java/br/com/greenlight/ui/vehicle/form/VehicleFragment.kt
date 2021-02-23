@@ -1,4 +1,4 @@
-package br.com.greenlight.views
+package br.com.greenlight.ui.vehicle.form
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,26 +7,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.greenlight.R
-import br.com.greenlight.viewModels.VehicleTripViewModel
 
-class VehicleTripFragment : Fragment() {
+class VehicleFragment : Fragment() {
 
     companion object {
-        fun newInstance() = VehicleTripFragment()
+        fun newInstance() = VehicleFragment()
     }
 
-    private lateinit var viewModel: VehicleTripViewModel
+    private lateinit var viewModel: VehicleViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.vehicle_trip_fragment, container, false)
+        return inflater.inflate(R.layout.vehicle_fragment, container, false)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(VehicleTripViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(VehicleViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

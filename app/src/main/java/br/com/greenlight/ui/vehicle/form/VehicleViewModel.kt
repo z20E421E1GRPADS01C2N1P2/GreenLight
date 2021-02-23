@@ -1,4 +1,4 @@
-package br.com.greenlight.viewModels
+package br.com.greenlight.ui.vehicle.form
 
 import androidx.lifecycle.ViewModel
 

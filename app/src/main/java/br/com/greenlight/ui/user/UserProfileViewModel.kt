@@ -1,4 +1,4 @@
-package br.com.greenlight.viewModels
+package br.com.greenlight.ui.user
 
 import androidx.lifecycle.ViewModel
 

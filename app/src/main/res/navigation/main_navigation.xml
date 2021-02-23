@@ -18,12 +18,12 @@
     </fragment>
     <fragment
         android:id="@+id/vehicleTripFragment"
-        android:name="br.com.greenlight.views.VehicleTripFragment"
+        android:name="br.com.greenlight.ui.trip.VehicleTripFragment"
         android:label="@string/vehicle_trips_screen"
         tools:layout="@layout/vehicle_trip_fragment" />
     <fragment
         android:id="@+id/vehicleFragment"
-        android:name="br.com.greenlight.views.VehicleFragment"
+        android:name="br.com.greenlight.ui.vehicle.form.VehicleFragment"
         android:label="@string/vehicle_list_screen"
         tools:layout="@layout/vehicle_fragment" />
 </navigation>

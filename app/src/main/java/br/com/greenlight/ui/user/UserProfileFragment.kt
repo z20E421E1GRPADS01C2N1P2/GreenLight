@@ -1,4 +1,4 @@
-package br.com.greenlight.views
+package br.com.greenlight.ui.user
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.greenlight.R
-import br.com.greenlight.viewModels.UserProfileViewModel
 
 class UserProfileFragment : Fragment() {
 

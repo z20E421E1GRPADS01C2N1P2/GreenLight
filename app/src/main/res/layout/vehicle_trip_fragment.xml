@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.VehicleTripFragment">
+    tools:context=".ui.trip.VehicleTripFragment">
 
     <TextView
         android:id="@+id/textView2"
