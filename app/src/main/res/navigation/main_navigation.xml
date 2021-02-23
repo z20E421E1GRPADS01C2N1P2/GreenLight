@@ -26,4 +26,9 @@
         android:name="br.com.greenlight.ui.vehicle.form.VehicleFragment"
         android:label="@string/vehicle_list_screen"
         tools:layout="@layout/vehicle_fragment" />
+    <fragment
+        android:id="@+id/listVehicleFragment"
+        android:name="br.com.greenlight.ui.vehicle.list.ListVehicleFragment"
+        android:label="list_vehicle_fragment"
+        tools:layout="@layout/list_vehicle_fragment" />
 </navigation>
