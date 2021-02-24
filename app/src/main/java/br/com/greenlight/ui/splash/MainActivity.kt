@@ -1,4 +1,4 @@
-package br.com.greenlight
+package br.com.greenlight.ui.splash
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
