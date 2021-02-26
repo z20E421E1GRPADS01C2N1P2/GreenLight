@@ -100,7 +100,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerOption"
         android:layout_width="150dp"
         android:layout_height="23dp"
         android:layout_marginStart="8dp"
@@ -120,6 +120,6 @@
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerOption" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
