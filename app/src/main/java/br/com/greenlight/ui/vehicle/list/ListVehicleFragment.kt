@@ -6,13 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.navigation.fragment.findNavController
 import br.com.greenlight.R
+import kotlinx.android.synthetic.main.list_vehicle_fragment.*
 
 class ListVehicleFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = ListVehicleFragment()
-    }
 
     private lateinit var viewModel: ListVehicleViewModel
 
@@ -20,6 +19,17 @@ class ListVehicleFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        viewModel = ViewModelProvider(this).get(ListVehicleViewModel::class.java)
+
+        viewModel.vehicle.observe(viewLifecycleOwner){
+            listViewVehicle.adapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_list_item_1,
+                it
+            )
+        }
+
         return inflater.inflate(
             R.layout.list_vehicle_fragment,
             container,
@@ -27,11 +37,11 @@ class ListVehicleFragment : Fragment() {
         )
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel =
-            ViewModelProvider(this).get(ListVehicleViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        fabAddVehicle.setOnClickListener {
+            findNavController().navigate(R.id.vehicleFragment)
+        }
     }
 
 }

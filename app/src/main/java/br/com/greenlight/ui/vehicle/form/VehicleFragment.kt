@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import br.com.greenlight.R
-import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.vehicle_fragment.*
 
 
@@ -17,7 +15,6 @@ class VehicleFragment : Fragment() {
 
     private lateinit var viewModel: VehicleViewModel
 
-    var db = FirebaseFirestore.getInstance()
     lateinit var option: Spinner
 
     override fun onCreateView(
@@ -25,12 +22,12 @@ class VehicleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        option = spinnerOption as Spinner
+        option = spinnerOptionCombustivel as Spinner
 
         val options = arrayOf("Gasolina","Disel","Elétrico")
 
-        option.adapter = ArrayAdapter<String>(context!!, android.R.layout
-            .simple_list_item_1,options)
+        option.adapter = ArrayAdapter<String>(requireContext(), android.R.layout
+            .simple_spinner_dropdown_item,options)
 
         option.onItemSelectedListener = object : AdapterView
         .OnItemSelectedListener{
@@ -40,7 +37,8 @@ class VehicleFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-
+                val combustivel = options[position]
+                viewModel.selecionarCombustivel(combustivel)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -54,12 +52,16 @@ class VehicleFragment : Fragment() {
     }
 
 
-
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(VehicleViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        btnSaveVehicle.setOnClickListener {
+            val modelo = edtTextModelo.text.toString()
+            val  marca = edtTextMarca.text.toString()
+            val ano = editTextAno.text.toString()
+            val placa = edtTextPlaca.text.toString()
+            val combustivel = spinnerOptionCombustivel.selectedItem.toString()
+            viewModel.insertVehicle(modelo,marca,ano,placa,combustivel)
+        }
     }
 
 }
