@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
 import br.com.greenlight.R
+import br.com.greenlight.dao.VehicleDaoFirestore
 import kotlinx.android.synthetic.main.list_vehicle_fragment.*
 
 class ListVehicleFragment : Fragment() {
@@ -20,7 +21,19 @@ class ListVehicleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel = ViewModelProvider(this).get(ListVehicleViewModel::class.java)
+        val application = requireActivity().application
+
+        val listVehicleViewModelFactory = ListVehicleViewModelFactory(
+            VehicleDaoFirestore(),
+            application)
+
+        viewModel = ViewModelProvider(this, listVehicleViewModelFactory)
+            .get(ListVehicleViewModel::class.java)
+
+//        viewModel.status.observe(viewLifecycleOwner, Observer { status ->
+//            if (status)
+//                findNavController().popBackStack()
+//        })
 
         viewModel.vehicle.observe(viewLifecycleOwner){
             listViewVehicle.adapter = ArrayAdapter(

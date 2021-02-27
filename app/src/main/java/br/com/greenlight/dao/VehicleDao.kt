@@ -7,19 +7,20 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 
-object VehicleDao {
+interface VehicleDao {
 
-    private val collection = FirebaseFirestore.getInstance().collection("vehicle")
+//    private val collection = FirebaseFirestore.getInstance().collection("vehicle")
 
 
-    fun insert(vehicle: Vehicle): Task<Void>{
-        return collection.document(vehicle.placa!!)
-            .set(vehicle)
-    }
+    fun insert(vehicle: Vehicle): Task<Void>
 
-    fun all(): CollectionReference{
-        return collection
-    }
+    fun delete(vehicle: Vehicle) : Task<Void>
+
+    fun get(placa: String): Task<DocumentSnapshot>
+
+    fun selectByMarca(marca: String): Task<QuerySnapshot>
+
+    fun all(): CollectionReference
 
 
 //    fun insert(vehicleDao: Vehicle): Task<Void>

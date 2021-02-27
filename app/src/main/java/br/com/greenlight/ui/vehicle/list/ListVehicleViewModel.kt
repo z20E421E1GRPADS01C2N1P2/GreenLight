@@ -1,18 +1,22 @@
 package br.com.greenlight.ui.vehicle.list
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import br.com.greenlight.dao.VehicleDao
 import br.com.greenlight.model.Vehicle
 
-class ListVehicleViewModel : ViewModel() {
+class ListVehicleViewModel (
+    private val vehicleDao: VehicleDao,
+    application: Application
+) : AndroidViewModel(application) {
 
     private val _vehicles = MutableLiveData<List<Vehicle>>()
     val vehicle: LiveData<List<Vehicle>> = _vehicles
 
     init {
-        VehicleDao.all().addSnapshotListener { snapshot, error ->
+        vehicleDao.all().addSnapshotListener { snapshot, error ->
             if (error == null && snapshot != null && !snapshot.isEmpty)
                 _vehicles.value = snapshot.toObjects(Vehicle::class.java)
         }

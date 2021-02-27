@@ -9,10 +9,12 @@ import com.google.firebase.firestore.QuerySnapshot
 
 class VehicleDaoFirestore : VehicleDao {
 
-    private val collection = FirebaseFirestore.getInstance().collection("vehicle")
+    private val collection = FirebaseFirestore
+        .getInstance()
+        .collection("carros")
 
     override fun insert(vehicle: Vehicle): Task<Void> {
-        return collection                               //.add(carro)
+        return collection
             .document(vehicle.placa!!)
             .set(vehicle)
     }
@@ -21,7 +23,6 @@ class VehicleDaoFirestore : VehicleDao {
             .document(vehicle.placa!!)
             .delete()
     }
-
     override fun get(placa: String): Task<DocumentSnapshot> {
         return collection
             .document(placa)
@@ -37,5 +38,4 @@ class VehicleDaoFirestore : VehicleDao {
     override fun all(): CollectionReference {
         return collection
     }
-
 }
