@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -40,6 +41,8 @@ class VehicleFragment() : Fragment() {
         viewModel.spinnerItems().observe(viewLifecycleOwner, Observer { spinnerData ->
             val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout
                 .simple_spinner_item, spinnerData)
+            //Desabilitar a primeira opção do spinner
+//            spinnerData[0].
             spinnerOptionCombustivel.adapter = spinnerAdapter
         })
 

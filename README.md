@@ -13,7 +13,7 @@ Projeto Base
 
 ### Assunto
  <ul>
-     <li>Aplicativo de simulação de emissão de CO2 e pesquisa de carros elétricos.</li>
+    <li>Aplicativo de simulação de emissão de CO2 e pesquisa de carros elétricos.</li>
  </ul>
 
 ### Cenário
@@ -29,3 +29,5 @@ Projeto Base
     além de trazê-lo para um cenário com conteúdo informativo e educativo sobre esse tema,
     além de buscar conscientizá-lo sobre o malefício da emissão de gás carbônico a nível
     prejudicial, na atmosfera.</p>
+    
+## Project Setup
