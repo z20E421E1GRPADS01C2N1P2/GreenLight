@@ -41,7 +41,7 @@ class VehicleViewModel (
 
     fun store(marca: String, modelo: String, placa: String){
         _status.value = false
-        val vehicle = Vehicle(marca, modelo, placa = placa)
+        val vehicle = Vehicle(marca, modelo, placa)
         vehicleDao.insert(vehicle)
             .addOnSuccessListener {
                 _msg.value = "Persistência realizada com sucesso."

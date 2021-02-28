@@ -6,8 +6,8 @@ class Vehicle(
     val modelo: String? = null,
     val marca: String? = null,
     val tipoCombustivel: String? = null,
+    val ano: String? = null,
     @DocumentId
-    val placa: String? = null,
-    val ano: String? = null
+    val placa: String? = null
 ) {
 }
