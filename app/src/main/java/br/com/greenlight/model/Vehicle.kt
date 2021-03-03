@@ -10,4 +10,7 @@ class Vehicle(
     @DocumentId
     val placa: String? = null
 ) {
+    fun get() {
+
+    }
 }
