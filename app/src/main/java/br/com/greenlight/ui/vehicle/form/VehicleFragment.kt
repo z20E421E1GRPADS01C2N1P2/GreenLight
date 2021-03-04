@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,8 +17,6 @@ import kotlinx.android.synthetic.main.vehicle_fragment.*
 class VehicleFragment() : Fragment() {
 
     private lateinit var viewModel: VehicleViewModel
-
-//    lateinit var option: Spinner
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,43 +35,16 @@ class VehicleFragment() : Fragment() {
                 findNavController().popBackStack()
         })
 
-        viewModel.spinnerItems().observe(viewLifecycleOwner, Observer { spinnerData ->
+        viewModel.spinnerItems().observe(viewLifecycleOwner, { spinnerData ->
             val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout
                 .simple_spinner_item, spinnerData)
-            //Desabilitar a primeira opção do spinner
+            //TODO: Desabilitar a primeira opção do spinner
 //            spinnerData[0].
             spinnerOptionCombustivel.adapter = spinnerAdapter
         })
 
-//        option = spinnerOptionCombustivel as Spinner
-
-//        val options = arrayOf("Gasolina","Disel","Elétrico")
-
-//        option.adapter = ArrayAdapter<String>(requireContext(), android.R.layout
-//            .simple_spinner_dropdown_item,options)
-//
-//        option.onItemSelectedListener = object : AdapterView
-//        .OnItemSelectedListener{
-//            override fun onItemSelected(
-//                parent: AdapterView<*>?,
-//                view: View?,
-//                position: Int,
-//                id: Long
-//            ) {
-//                val combustivel = options[position]
-//                viewModel.selecionarCombustivel(combustivel)
-//            }
-
-//            override fun onNothingSelected(parent: AdapterView<*>?) {
-//                Toast.makeText(activity?.applicationContext, "Escolha um item", Toast
-//                    .LENGTH_SHORT)
-//                    .show()
-//            }
-//        }
-
         return inflater.inflate(R.layout.vehicle_fragment, container, false)
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

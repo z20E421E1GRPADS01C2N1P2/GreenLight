@@ -17,7 +17,7 @@ class VehicleViewModel (
     private val app = application
 
     private val _spinner = MutableLiveData<List<String>>()
-    val spinner: LiveData<List<String>> = _spinner
+    private val spinner: LiveData<List<String>> = _spinner
 
     private val _status = MutableLiveData<Boolean>()
     val status: LiveData<Boolean> = _status
@@ -34,7 +34,7 @@ class VehicleViewModel (
 
     // Implementando Spinner
     fun spinnerItems(): LiveData<List<String>> {
-        _spinner.value = listOf("Selecione um combustível", "Gasolina","Álcool", "Diesel", "Eletricidade")
+        _spinner.value = listOf("Gasolina","Álcool", "Diesel", "Eletricidade")
         return spinner
     }
 
@@ -72,6 +72,5 @@ class VehicleViewModel (
             .addOnFailureListener {
                 _msg.value = "${it.message}"
             }
-
     }
 }

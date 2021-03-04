@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Green Light</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Green Light</string>
+    <string name="hello_blank_fragment">Dashboard</string>
     <string name="dashboard_screen">Dashboard</string>
     <string name="login_screen">Login</string>
     <string name="user_profile_screen">Perfil</string>

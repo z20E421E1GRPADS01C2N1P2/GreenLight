@@ -1,6 +1,5 @@
 package br.com.greenlight.ui.splash
 
-import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -14,10 +13,10 @@ class SplashScreenViewModel : ViewModel() {
     init {
         GlobalScope.launch {
             delay(3000)
-            mutableLiveData.postValue(SplashState.MainActivity())
+            mutableLiveData.postValue(SplashState.MainActivity)
         }
     }
 }
 sealed class SplashState {
-    class MainActivity : SplashState()
+    object MainActivity : SplashState()
 }

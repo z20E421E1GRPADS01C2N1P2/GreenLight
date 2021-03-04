@@ -8,14 +8,7 @@
         android:id="@+id/dashboardFragment"
         android:name="br.com.greenlight.views.DashboardFragment"
         android:label="@string/dashboard_screen"
-        tools:layout="@layout/fragment_dashboard">
-        <action
-            android:id="@+id/action_dashboardFragment_to_vehicleTripFragment3"
-            app:destination="@id/vehicleTripFragment" />
-        <action
-            android:id="@+id/action_dashboardFragment_to_vehicleFragment2"
-            app:destination="@id/vehicleFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_dashboard"/>
     <fragment
         android:id="@+id/vehicleTripFragment"
         android:name="br.com.greenlight.ui.trip.VehicleTripFragment"
@@ -31,4 +24,19 @@
         android:name="br.com.greenlight.ui.vehicle.list.ListVehicleFragment"
         android:label="list_vehicle_fragment"
         tools:layout="@layout/list_vehicle_fragment" />
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="br.com.greenlight.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/login_fragment" />
+    <activity
+        android:id="@+id/splashActivity"
+        android:name="br.com.greenlight.ui.splash.SplashActivity"
+        android:label="activity_splash"
+        tools:layout="@layout/activity_splash" />
+    <fragment
+        android:id="@+id/userRegisterFragment"
+        android:name="br.com.greenlight.UserRegisterFragment"
+        android:label="user_register_fragment"
+        tools:layout="@layout/user_register_fragment" />
 </navigation>

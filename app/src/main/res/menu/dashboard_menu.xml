@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/loginFragment"
+        android:id="@+id/loginFragment2"
         android:title="@string/link_Login_Menu" />
     <item
         android:id="@+id/userProfileFragment"
@@ -11,7 +11,7 @@
         android:id="@+id/vehicleTripFragment"
         android:title="@string/link_Car_Trips_Menu" />
     <item
-        android:id="@+id/vehicleFragment"
+        android:id="@+id/listVehicleFragment"
         android:title="@string/link_Vehicle_Register_Menu" />
     <item
         android:id="@+id/logoutFragment"
