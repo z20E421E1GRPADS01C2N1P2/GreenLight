@@ -46,7 +46,7 @@ class LoginFragment : Fragment() {
         }
 
         btnLoginCadastrar.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment2_to_dashboardFragment)
+            findNavController().navigate(R.id.action_loginFragment2_to_userRegisterFragment)
         }
     }
 }
