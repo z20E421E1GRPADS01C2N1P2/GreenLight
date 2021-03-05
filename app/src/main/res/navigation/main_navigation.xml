@@ -46,4 +46,9 @@
         android:name="br.com.greenlight.ui.user.register.UserRegisterFragment"
         android:label="user_register_fragment"
         tools:layout="@layout/user_register_fragment" />
+    <fragment
+        android:id="@+id/userProfileFragment2"
+        android:name="br.com.greenlight.ui.user.profile.UserProfileFragment"
+        android:label="user_profile_fragment"
+        tools:layout="@layout/user_profile_fragment" />
 </navigation>

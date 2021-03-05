@@ -39,8 +39,14 @@ class VehicleFragment() : Fragment() {
             val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout
                 .simple_spinner_item, spinnerData)
             //TODO: Desabilitar a primeira opção do spinner
-//            spinnerData[0].
+//            spinnerData[0]
             spinnerOptionCombustivel.adapter = spinnerAdapter
+
+//            spinnerOptionCombustivel.setOnItemClickListener(
+//                AdapterView.OnItemSelectedListener{
+//                    // onItemSelected (pos)
+//                    //...
+//                })
         })
 
         return inflater.inflate(R.layout.vehicle_fragment, container, false)
@@ -49,13 +55,16 @@ class VehicleFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btnSaveVehicle.setOnClickListener {
+            // verificar se o combustivel  ok
+            //
             val modelo = edtTextModelo.text.toString()
-            val  marca = edtTextMarca.text.toString()
+            val marca = edtTextMarca.text.toString()
             val ano = editTextAno.text.toString()
             val placa = edtTextPlaca.text.toString()
             val combustivel = spinnerOptionCombustivel.selectedItem.toString()
             viewModel.insertVehicle(modelo, marca, combustivel, ano, placa)
+            //
+            //se no, meg
         }
     }
-
 }

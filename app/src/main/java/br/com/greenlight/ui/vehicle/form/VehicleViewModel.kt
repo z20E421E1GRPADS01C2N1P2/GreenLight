@@ -34,7 +34,7 @@ class VehicleViewModel (
 
     // Implementando Spinner
     fun spinnerItems(): LiveData<List<String>> {
-        _spinner.value = listOf("Gasolina","Álcool", "Diesel", "Eletricidade")
+        _spinner.value = listOf("Gasolina", "Álcool", "Diesel", "Eletricidade")
         return spinner
     }
 

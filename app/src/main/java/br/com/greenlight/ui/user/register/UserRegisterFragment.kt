@@ -20,6 +20,7 @@ class UserRegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         registerViewModel = ViewModelProvider(this).get(UserRegisterViewModel::class.java)
 
         registerViewModel.status.observe(viewLifecycleOwner){

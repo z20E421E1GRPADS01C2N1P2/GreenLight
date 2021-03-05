@@ -5,7 +5,7 @@
         android:id="@+id/loginFragment2"
         android:title="@string/link_Login_Menu" />
     <item
-        android:id="@+id/userProfileFragment"
+        android:id="@+id/userProfileFragment2"
         android:title="@string/link_User_Profile_Menu" />
     <item
         android:id="@+id/vehicleTripFragment"
