@@ -1,11 +1,15 @@
 package br.com.greenlight.ui.maps
 
-import androidx.fragment.app.Fragment
+import android.Manifest
 
+import android.content.pm.PackageManager
+import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.content.PermissionChecker.checkSelfPermission
 import br.com.greenlight.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -13,8 +17,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import java.security.Permission
+import java.security.Permissions
 
 class MapsFragment : Fragment() {
+    private var locationPermissionGranted = false
 
     private val callback = OnMapReadyCallback { googleMap ->
         /**
@@ -46,5 +53,10 @@ class MapsFragment : Fragment() {
         val mapFragment =
             childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
     }
 }
