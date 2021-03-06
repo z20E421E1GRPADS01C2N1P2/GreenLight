@@ -20,7 +20,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import java.security.Permission
 import java.security.Permissions
 
-class MapsFragment : Fragment() {
+class MapsFragment : Fragment()  {
     private var locationPermissionGranted = false
 
     private val callback = OnMapReadyCallback { googleMap ->
