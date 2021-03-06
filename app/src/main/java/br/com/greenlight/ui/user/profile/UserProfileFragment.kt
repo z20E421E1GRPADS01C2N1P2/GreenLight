@@ -22,7 +22,6 @@ class UserProfileFragment : Fragment() {
 
         viewModel.firebaseUser.observe(viewLifecycleOwner){
             textViewPerfilEmail.text = it.email
-            textViewPerfilUid.text = it.uid
         }
 
         return inflater.inflate(R.layout.user_profile_fragment, container, false)
