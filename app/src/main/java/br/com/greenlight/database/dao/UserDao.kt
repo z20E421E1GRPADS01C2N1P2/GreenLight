@@ -6,10 +6,17 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 
 object UserDao {
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val collection = FirebaseFirestore.getInstance().collection("users")
+
+    private val storageReference = FirebaseStorage
+        .getInstance()
+        .reference
+        .child("users")
 
     fun saveRegister(email: String, password: String): Task<AuthResult> {
         return firebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -26,8 +33,13 @@ object UserDao {
     ): Task<Void> {
         return collection
             .document(uid)
-            .set(User(nome, username, endereco, codigoPostal, dataNascimento
-                .toString()))
+            .set(User(nome, username, endereco, codigoPostal, dataNascimento))
+    }
+
+    fun saveUserImageProfile(uid: String, image: ByteArray): UploadTask {
+        return storageReference
+            .child("${uid}.jpeg")
+            .putBytes(image)
     }
 
     //Search for a user by their uid

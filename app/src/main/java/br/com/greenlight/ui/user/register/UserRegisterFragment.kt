@@ -1,9 +1,17 @@
 package br.com.greenlight.ui.user.register
 
+import android.app.Activity
+import android.app.Instrumentation
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -55,11 +63,42 @@ class UserRegisterFragment : Fragment() {
                 val dataNascimento = editTextCadastroDataNascimento.text.toString()
 
                 registerViewModel.saveRegister(email, password, nome,
-                    username, endereco, codigoPostal, dataNascimento.toString())
+                    username, endereco, codigoPostal, dataNascimento)
             }
             else {
                 registerViewModel.changeMessage("Senhas não conferem")
             }
+        }
+
+        imageViewUserRegister.setOnClickListener {
+            selectPicture()
+        }
+    }
+
+    private fun selectPicture() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest
+                .permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(android.Manifest.permission.CAMERA), 1)
+        } else{
+            startActivityForResult(intent, 1)
+        }
+    }
+
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK) {
+            val picture: Bitmap = data!!.getParcelableExtra("data")!!
+            imageViewUserRegister.setImageBitmap(picture)
+            registerViewModel.takePicture(picture)
+        } else {
+            Snackbar.make(requireContext(), this.requireView(), "Não deu " +
+                    "certo", Snackbar.LENGTH_LONG).show()
         }
     }
 }
