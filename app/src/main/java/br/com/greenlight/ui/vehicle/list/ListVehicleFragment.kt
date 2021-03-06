@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
 import br.com.greenlight.R
-import br.com.greenlight.dao.VehicleDaoFirestore
+import br.com.greenlight.database.dao.VehicleDaoFirestore
 import kotlinx.android.synthetic.main.list_vehicle_fragment.*
 
 class ListVehicleFragment : Fragment() {

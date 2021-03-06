@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import br.com.greenlight.R
-import br.com.greenlight.dao.VehicleDaoFirestore
+import br.com.greenlight.database.dao.VehicleDaoFirestore
 import kotlinx.android.synthetic.main.vehicle_fragment.*
 
 

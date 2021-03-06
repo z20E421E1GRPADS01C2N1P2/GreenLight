@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import br.com.greenlight.dao.VehicleDao
+import br.com.greenlight.database.dao.VehicleDao
 import br.com.greenlight.model.Vehicle
 
 class ListVehicleViewModel (

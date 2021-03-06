@@ -3,7 +3,7 @@ package br.com.greenlight.ui.vehicle.list
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import br.com.greenlight.dao.VehicleDao
+import br.com.greenlight.database.dao.VehicleDao
 
 class ListVehicleViewModelFactory  (private val vehicleDao: VehicleDao, private val application: Application): ViewModelProvider.Factory {
 

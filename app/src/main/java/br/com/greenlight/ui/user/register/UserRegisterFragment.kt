@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import br.com.greenlight.R
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.login_fragment.*
 import kotlinx.android.synthetic.main.user_register_fragment.*
 
 class UserRegisterFragment : Fragment() {
@@ -30,8 +29,7 @@ class UserRegisterFragment : Fragment() {
 
         registerViewModel.msg.observe(viewLifecycleOwner){
             if(!it.isNullOrBlank())
-                Snackbar.make(requireContext(), this.requireView(), it, Snackbar
-                    .LENGTH_LONG).show()
+                Snackbar.make(requireContext(), this.requireView(), it, Snackbar.LENGTH_LONG).show()
         }
 
         return inflater.inflate(
@@ -45,12 +43,23 @@ class UserRegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnCadastro.setOnClickListener {
-            val email = editTextCadastroEmail.text.toString()
             val password = editTextPassword.text.toString()
             val repeatPassword = editTextRepeatPassword.text.toString()
 
-            if (password == repeatPassword) registerViewModel.saveRegister(email, password)
-            else registerViewModel.changeMessage("Senhas não conferem")
+            if (password == repeatPassword) {
+                val email = editTextCadastroEmail.text.toString()
+                val nome = editTextCadastroNome.text.toString()
+                val username = editTextCadastroUsername.text.toString()
+                val endereco = editTexCadastroEndereco.text.toString()
+                val codigoPostal = editTextTextPostalAddress.text.toString()
+                val dataNascimento = editTextCadastroDataNascimento.text.toString()
+
+                registerViewModel.saveRegister(email, password, nome,
+                    username, endereco, codigoPostal, dataNascimento.toString())
+            }
+            else {
+                registerViewModel.changeMessage("Senhas não conferem")
+            }
         }
     }
 }

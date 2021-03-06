@@ -1,4 +1,4 @@
-package br.com.greenlight.dao
+package br.com.greenlight.database.dao
 
 import br.com.greenlight.model.Vehicle
 import com.google.android.gms.tasks.Task

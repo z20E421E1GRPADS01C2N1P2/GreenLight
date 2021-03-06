@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.NonNull
+import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
@@ -47,6 +49,9 @@ class MainActivity : AppCompatActivity() {
         //Implementa o menu hamburguer
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(navView, navController)
+
+        //Hide Menu if user isn't logged in
+//        navView.menu.removeItem(R.id.userProfileFragment)
 
         //Teste FirebaseFirestore
 //        val firebaseFirestore = FirebaseFirestore.getInstance()
