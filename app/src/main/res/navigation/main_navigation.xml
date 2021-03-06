@@ -11,9 +11,9 @@
         tools:layout="@layout/fragment_dashboard"/>
     <fragment
         android:id="@+id/vehicleTripFragment"
-        android:name="br.com.greenlight.ui.trip.VehicleTripFragment"
+        android:name="br.com.greenlight.ui.trip.from.TripFragment"
         android:label="@string/vehicle_trips_screen"
-        tools:layout="@layout/vehicle_trip_fragment" />
+        tools:layout="@layout/trip_fragment" />
     <fragment
         android:id="@+id/vehicleFragment"
         android:name="br.com.greenlight.ui.vehicle.form.VehicleFragment"
