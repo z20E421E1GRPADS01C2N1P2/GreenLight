@@ -18,8 +18,7 @@ class UserProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        profileViewModel = ViewModelProvider(this)
-            .get(UserProfileViewModel::class.java)
+        profileViewModel = ViewModelProvider(this).get(UserProfileViewModel::class.java)
 
         profileViewModel.firebaseUser.observe(viewLifecycleOwner){
             textViewPerfilEmail.text = it.email
