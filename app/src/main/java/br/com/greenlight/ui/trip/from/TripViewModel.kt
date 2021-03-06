@@ -45,7 +45,7 @@ class TripViewModel(private val tripDao: TripDao, application: Application) :
         nomeViagem: String, partida: String, destino: String, distancia: String
     ) {
 
-        val trip = Trip(partida, destino)
+        val trip = Trip( nomeViagem,partida, destino, distancia)
         tripDao.insert(trip)
             .addOnSuccessListener {
                 _status.value = true

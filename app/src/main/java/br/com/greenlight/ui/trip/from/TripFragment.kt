@@ -46,7 +46,7 @@ class TripFragment() : Fragment() {
              val destino = editTextDestino.text.toString()
              val partida = editTextPartida.text.toString()
              val distancia = editTextDistancia.text.toString()
-             viewModel.insertTrip(nomeViagem,destino,partida,distancia)
+             viewModel.insertTrip(nomeViagem,partida,destino,distancia)
          }
     }
 
