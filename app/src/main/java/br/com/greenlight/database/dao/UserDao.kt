@@ -6,8 +6,10 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import java.io.File
 
 object UserDao {
     private val firebaseAuth = FirebaseAuth.getInstance()
@@ -45,5 +47,9 @@ object UserDao {
     //Search for a user by their uid
     fun selectUserByUid(uid: String): Task<DocumentSnapshot> {
         return collection.document(uid).get()
+    }
+
+    fun selectUserPictureByUid(uid: String, file: File): FileDownloadTask {
+        return storageReference.child("${uid}.jpeg").getFile(file)
     }
 }
