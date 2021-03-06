@@ -12,16 +12,31 @@ import kotlinx.android.synthetic.main.user_profile_fragment.*
 
 class UserProfileFragment : Fragment() {
 
-    private lateinit var viewModel: UserProfileViewModel
+    private lateinit var profileViewModel: UserProfileViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(UserProfileViewModel::class.java)
+        profileViewModel = ViewModelProvider(this)
+            .get(UserProfileViewModel::class.java)
 
-        viewModel.firebaseUser.observe(viewLifecycleOwner){
+        profileViewModel.firebaseUser.observe(viewLifecycleOwner){
             textViewPerfilEmail.text = it.email
+        }
+
+        profileViewModel.user.observe(viewLifecycleOwner) {
+            if (it != null) {
+                textViewPerfilNome.text = it.nome
+                textViewPerfilUsername.text = it.username
+                textViewPerfilEndereco.text = it.endereco
+                textViewPerfilCodigoPostal.text = it.codigoPostal
+                textViewPerfilDataDeNascimento.text = it.dataNascimento
+            }
+        }
+
+        profileViewModel.userPicture.observe(viewLifecycleOwner) {
+            if (it != null) imageViewProfilePicture.setImageURI(it)
         }
 
         return inflater.inflate(R.layout.user_profile_fragment, container, false)
@@ -30,7 +45,7 @@ class UserProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btnPerfilSair.setOnClickListener {
-            viewModel.encerrarSessao()
+            profileViewModel.encerrarSessao()
             findNavController().popBackStack()
         }
     }
