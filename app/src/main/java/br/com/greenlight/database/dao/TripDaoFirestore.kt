@@ -14,12 +14,12 @@ class TripDaoFirestore :TripDao {
 
     override fun insert(trip: Trip): Task<Void> {
         return collection
-            .document(trip.uid!!)
+            .document(trip.nomeViagem!!)
             .set(trip)
     }
     override fun delete(trip: Trip): Task<Void> {
         return collection
-            .document(trip.uid!!)
+            .document(trip.nomeViagem!!)
             .delete()
     }
     override fun get(uid: String): Task<DocumentSnapshot> {

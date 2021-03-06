@@ -13,4 +13,11 @@ class Vehicle(
     fun get() {
 
     }
+
+    override fun toString(): String = "Modelo: $modelo" +
+            " \nMarca: $marca " +
+            "\nTipo de Combustivel: $tipoCombustivel" +
+            "\nAno: $ano" +
+            "\nPlaca: $placa" +
+            "\n"
 }

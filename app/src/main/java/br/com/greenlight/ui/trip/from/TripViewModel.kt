@@ -11,6 +11,7 @@ import com.google.firebase.storage.StorageReference
 
 class TripViewModel(private val tripDao: TripDao, application: Application) :
     AndroidViewModel(application) {
+
     private val app = application
     private val _status = MutableLiveData<Boolean>()
     val status: LiveData<Boolean> = _status
@@ -41,7 +42,7 @@ class TripViewModel(private val tripDao: TripDao, application: Application) :
     }
 
     fun insertTrip(
-        partida: String, destino: String
+        nomeViagem: String, partida: String, destino: String, distancia: String
     ) {
 
         val trip = Trip(partida, destino)

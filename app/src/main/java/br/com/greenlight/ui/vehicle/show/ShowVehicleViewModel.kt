@@ -19,7 +19,6 @@ class ShowVehicleViewModel : ViewModel() {
             .addOnSuccessListener {
                 val listaVehicle: MutableList<Vehicle> = it.toObjects(Vehicle::class.java)
             }
-
     }
 
 }

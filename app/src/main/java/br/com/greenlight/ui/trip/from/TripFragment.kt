@@ -42,9 +42,11 @@ class TripFragment() : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(TripViewModel::class.java)
          btnBuscar.setOnClickListener {
+             val nomeViagem = edtTextNomeViagem.text.toString()
              val destino = editTextDestino.text.toString()
              val partida = editTextPartida.text.toString()
-             viewModel.insertTrip(destino,partida)
+             val distancia = editTextDistancia.text.toString()
+             viewModel.insertTrip(nomeViagem,destino,partida,distancia)
          }
     }
 
