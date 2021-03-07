@@ -14,7 +14,7 @@ class TripService {
 
     init {
         val retrofit = Retrofit.Builder().baseUrl("https://maps.googleapis" +
-                ".com/maps/api/distancematrix/json?origins=Boston,MA|Charlestown,MA&destinations=Lexington,MA|Concord,MA&departure_time=now&key=AIzaSyA6-gv6pdSiQyn-6-he4n3HT_J_0vPS6N8")
+                ".com/maps/api/distancematrix/json?")
             .addConverterFactory(GsonConverterFactory.create()).build()
         api = retrofit.create(DistanceMatrixApi::class.java)
 
