@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -35,11 +37,45 @@ class TripFragment() : Fragment() /*,DistanceServiceListener*/ {
         viewModel = ViewModelProvider(this, tripViewModelFactory)
             .get(TripViewModel::class.java)
 
+        viewModel.carros.observe(viewLifecycleOwner,{
+            val adapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_spinner_item,
+                it
+            )
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerVehicle.adapter = adapter
+            spinnerVehicle.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onNothingSelected(parent: AdapterView<*>?) { }
+
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        val placa = it[position]
+                        viewModel.vehicleSelecionadoo(placa)
+                    }
+                }
+        })
+
         viewModel.status.observe(viewLifecycleOwner, Observer { status ->
             if (status)
                 findNavController().popBackStack()
         })
         //servico.setDistanceServiceListener(this)
+
+        viewModel.msg.observe(viewLifecycleOwner, Observer {
+            if (!it.isNullOrBlank())
+                Toast
+                    .makeText(
+                        requireContext(),
+                        it,
+                        Toast.LENGTH_LONG
+                    ).show()
+        })
 
 
         return view

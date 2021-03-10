@@ -5,7 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import br.com.greenlight.database.dao.TripDao
+import br.com.greenlight.database.dao.VehicleDaoFirestore
 import br.com.greenlight.model.Trip
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
@@ -19,9 +21,26 @@ class TripViewModel(private val tripDao: TripDao, application: Application) :
     private val _msg = MutableLiveData<String?>()
     val msg: MutableLiveData<String?> = _msg
 
+    private val _carros = MutableLiveData<MutableList<String>>()
+    val carros: LiveData<MutableList<String>> = _carros
+
+    private var placa: String? = null
+
+    private var uid: String? = null
+
     init {
         _status.value = false
         _msg.value = null
+        VehicleDaoFirestore()
+            .all()
+            .get()
+            .addOnSuccessListener {
+                _carros.value = mutableListOf("Selecione um veículo")
+                it.documents.forEach {
+                    _carros.value!!.add(it.id)
+                }
+            }
+
     }
 
     fun store(partida: String, destino: String) {
@@ -41,11 +60,20 @@ class TripViewModel(private val tripDao: TripDao, application: Application) :
         return FirebaseStorage.getInstance().reference.child("carros/$uid")
     }
 
+    fun vehicleSelecionadoo(placa:String){
+        this.placa = placa
+    }
+
     fun insertTrip(
         nomeViagem: String, partida: String, destino: String, distancia: String
     ) {
+        val vehicle = FirebaseFirestore
+            .getInstance()
+            .collection("carros")
+            .document(placa!!)
 
-        val trip = Trip( nomeViagem,partida, destino, distancia)
+
+        val trip = Trip( nomeViagem,partida, destino, distancia, vehicle)
         tripDao.insert(trip)
             .addOnSuccessListener {
                 _status.value = true
