@@ -11,7 +11,7 @@
         android:id="@+id/vehicleTripFragment"
         android:title="@string/link_Car_Trips_Menu" />
     <item
-        android:id="@+id/logoutFragment"
+        android:id="@+id/dashboardFragment"
         android:title="@string/link_Logout_Menu" />
 
 </menu>

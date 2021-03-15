@@ -34,7 +34,7 @@ object UserDao {
         dataNascimento: String
     ): Task<Void> {
         return collection
-            .document(uid)
+            .document(nome)
             .set(User(nome, username, endereco, codigoPostal, dataNascimento))
     }
 
@@ -45,8 +45,8 @@ object UserDao {
     }
 
     //Search for a user by their uid
-    fun selectUserByUid(uid: String): Task<DocumentSnapshot> {
-        return collection.document(uid).get()
+    fun selectUserByUid(nome: String): Task<DocumentSnapshot> {
+        return collection.document(nome).get()
     }
 
     fun selectUserPictureByUid(uid: String, file: File): FileDownloadTask {

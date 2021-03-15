@@ -1,25 +1,15 @@
 package br.com.greenlight.ui.splash
 
-import android.app.ActivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
-import androidx.annotation.NonNull
-import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import br.com.greenlight.R
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,6 +40,28 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(navView, navController)
 
+        //Logout
+        navView.menu.findItem(R.id.logoutFragment).setOnMenuItemClickListener {
+
+            val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+            firebaseAuth.signOut()
+            navController.navigate(R.id.dashboardFragment)
+            Toast.makeText(this, "Saiu", Toast.LENGTH_LONG).show()
+            true
+        }
+
+//        val logout = this.findViewById<DrawerLayout>(R.id.dashboardFragment)
+//
+//        logout.setOnClickListener {
+//            firebaseAuth.signOut()
+//            navController.n(R.id.dashboardFragment)
+//            Toast.makeText(this, "hahha", Toast.LENGTH_LONG).show()
+//        }
+//
+
+
+
+
         //Hide Menu if user isn't logged in
 //        navView.menu.removeItem(R.id.userProfileFragment)
 
@@ -76,4 +88,33 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, drawerLayout)
     }
+
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        val inflater: MenuInflater = menuInflater
+//        inflater.inflate(R.menu.dashboard_menu, menu)
+//        return true
+//    }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//             return when (item.itemId) {
+//            R.id.logoutFragment -> {
+//                val firebaseAuth = FirebaseAuth.getInstance()
+//                firebaseAuth.signOut()
+//                navView.findNavController().navigate(R.id.listVehicleFragment)
+//                logout()
+//                true
+//            }
+
+//            else -> super.onOptionsItemSelected(item)
+//        }
+//    }
+
+//        private fun logout() {
+//            val view: View? = null
+//            val firebaseAuth = FirebaseAuth.getInstance()
+//            val currentUser = firebaseAuth.currentUser
+//            firebaseAuth.signOut()
+//            view?.findNavController()?.navigate(R.id.dashboardFragment)
+//        }
+
 }

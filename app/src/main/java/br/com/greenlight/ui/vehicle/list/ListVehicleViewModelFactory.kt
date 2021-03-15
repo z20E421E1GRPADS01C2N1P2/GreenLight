@@ -5,7 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import br.com.greenlight.database.dao.VehicleDao
 
-class ListVehicleViewModelFactory  (private val vehicleDao: VehicleDao, private val application: Application): ViewModelProvider.Factory {
+class ListVehicleViewModelFactory(
+    private val vehicleDao: VehicleDao,
+    private val application: Application
+) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ListVehicleViewModel::class.java))

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import br.com.greenlight.R
 import kotlinx.android.synthetic.main.user_profile_fragment.*
 
@@ -41,11 +40,13 @@ class UserProfileFragment : Fragment() {
         return inflater.inflate(R.layout.user_profile_fragment, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        btnPerfilSair.setOnClickListener {
-            profileViewModel.encerrarSessao()
-            findNavController().popBackStack()
-        }
-    }
+    /* Logout */
+    
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//        btnPerfilSair.setOnClickListener {
+//            profileViewModel.encerrarSessao()
+//            findNavController().popBackStack()
+//        }
+//    }
 }
