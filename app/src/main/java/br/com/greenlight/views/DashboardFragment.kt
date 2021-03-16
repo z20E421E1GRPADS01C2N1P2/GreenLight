@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.navigation.fragment.findNavController
 import br.com.greenlight.R
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_dashboard.*
@@ -24,7 +27,8 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
         btnMapa.setOnClickListener {
             findNavController().navigate(R.id.locationActivity)
         }
