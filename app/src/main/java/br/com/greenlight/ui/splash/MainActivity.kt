@@ -10,6 +10,7 @@ import androidx.navigation.ui.NavigationUI
 import br.com.greenlight.R
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,18 +48,23 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Já vai tarde", Toast.LENGTH_LONG).show()
             true
         }
+
+//        navView.menu.findItem(R.id.userProfileFragment)
+//            .setOnMenuItemClickListener {
+//
+//                if (currentUser != null) {
+//                    navController.navigate(R.id.userProfileFragment)
+//                } else {
+//                    navController.navigate(R.id.action_dashboardFragment_to_loginFragment)
+//                }
+//                drawerLayout.close()
+//                true
+//            }
+
 /* TODO: ver por que não está funcionando
 
         /* If user tries to access profile fragment, the app redirects to
         login fragment */
-        navView.menu.findItem(R.id.userProfileFragment)
-            .setOnMenuItemClickListener {
-
-                if (currentUser == null) navController.navigate(R.id.loginFragment)
-                else if (currentUser != null) navController.navigate(R.id.userProfileFragment)
-                drawerLayout.close()
-                true
-            }
 
         /* If user tries to access vehicle list fragment, the app redirects to
         login fragment */

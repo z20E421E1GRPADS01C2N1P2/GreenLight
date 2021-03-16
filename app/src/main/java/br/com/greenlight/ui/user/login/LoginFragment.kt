@@ -1,6 +1,7 @@
 package br.com.greenlight.ui.user.login
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -70,7 +71,6 @@ class LoginFragment : Fragment() {
             } else {
                 loading.visibility = View.VISIBLE
                 loginViewModel.verificarUsuario(email, password)
-
             }
         }
 

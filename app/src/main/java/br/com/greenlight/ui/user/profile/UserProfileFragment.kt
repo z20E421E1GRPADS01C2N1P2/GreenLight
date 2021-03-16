@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import br.com.greenlight.R
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.user_profile_fragment.*
 
 class UserProfileFragment : Fragment() {
@@ -17,10 +19,17 @@ class UserProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+//        val firebaseAuth = FirebaseAuth.getInstance()
+//        val firebaseUser = firebaseAuth.currentUser
+//
+//        if (firebaseUser == null)
+//            findNavController().navigate(R.id.loginFragment)
+
         profileViewModel = ViewModelProvider(this).get(UserProfileViewModel::class.java)
 
         profileViewModel.firebaseUser.observe(viewLifecycleOwner){
-            textViewPerfilEmail.text = it.email
+            textViewPerfilEmail.text = it?.email
         }
 
         profileViewModel.user.observe(viewLifecycleOwner) {

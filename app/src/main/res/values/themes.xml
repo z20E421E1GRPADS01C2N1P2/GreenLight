@@ -18,6 +18,9 @@
 
     <!-- Splash Screen theme -->
     <style name="ColdStart" parent="Theme.GreenLight">
-        <item name="android:windowBackground">@drawable/ll_win_bg_splash</item>
+<!--        <item name="android:background">@drawable/logo</item>-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:colorBackground">#122a2e</item>
+        <item name="android:gravity">center</item>
     </style>
 </resources>
