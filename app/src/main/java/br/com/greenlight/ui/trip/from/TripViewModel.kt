@@ -28,6 +28,9 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
     private val _carros = MutableLiveData<MutableList<String>>()
     val carros: LiveData<MutableList<String>> = _carros
 
+    private val _distancia = MutableLiveData<String?>()
+    val distancia: MutableLiveData<String?> =_distancia
+
     private var placa: String? = null
 
     private var uid: String? = null
@@ -35,6 +38,7 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
     init {
         _status.value = false
         _msg.value = null
+        _distancia.value = null
         VehicleDaoFirestore()
             .all()
             .get()
@@ -47,7 +51,7 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
         viewModelScope.launch {
             val distanceService = DistanceApi.getTripService()
             if (destino != null && origem !=null){
-                val distancia = distanceService.obterDistance(destino,origem)
+               // val _distancia.value = distanceService.obterDistance(destino,origem)
             }
 
         }

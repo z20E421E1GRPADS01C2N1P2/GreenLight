@@ -73,7 +73,6 @@ class TripFragment() : Fragment()  {
                     ).show()
         })
 
-
         return view
     }
 
@@ -82,12 +81,13 @@ class TripFragment() : Fragment()  {
         viewModel = ViewModelProvider(this).get(TripViewModel::class.java)
         editTextDestino.setOnFocusChangeListener { v, hasFocus ->
             val destination = bundleOf("destino" to editTextDestino.text.toString())
-            Log.i("destino",editTextDestino.text.toString())
+            Log.i("destino", destination.toString())
         }
         editTextPartida.setOnFocusChangeListener { v, hasFocus ->
             val origin = bundleOf("origem" to editTextPartida.text.toString())
-            Log.i("origem", editTextPartida.text.toString())
+            Log.i("origem", origin.toString())
         }
+
          btnBuscar.setOnClickListener {
              val nomeViagem = edtTextNomeViagem.text.toString()
              val destino = editTextDestino.text.toString()
