@@ -19,6 +19,7 @@ class UserProfileViewModel : ViewModel() {
 
     init {
         firebaseUser.value = firebaseAuth.currentUser
+
         UserDao.selectUserByUid(firebaseUser.value!!.uid)
             .addOnSuccessListener {
                 val selectedUser = it.toObject(User::class.java)
@@ -32,7 +33,8 @@ class UserProfileViewModel : ViewModel() {
             }
     }
 
-    fun encerrarSessao() {
-        firebaseAuth.signOut()
-    }
+    //Logout
+//    fun encerrarSessao() {
+//        firebaseAuth.signOut()
+//    }
 }

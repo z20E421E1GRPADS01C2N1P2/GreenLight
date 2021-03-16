@@ -1,25 +1,15 @@
 package br.com.greenlight.ui.splash
 
-import android.app.ActivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
-import androidx.annotation.NonNull
-import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import br.com.greenlight.R
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,43 +23,66 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //logout
-//        val firebaseAuth = FirebaseAuth.getInstance()
-//        firebaseAuth.signOut()
-
-        //Verify if there's an user logged in
-//        val firebaseUser = firebaseAuth.currentUser
-
-//        if(firebaseUser == null) popBackStack()
-
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val currentUser = firebaseAuth.currentUser
 
         drawerLayout = this.findViewById(R.id.drawerLayout)
         navController = this.findNavController(R.id.fragment)
         navView = this.findViewById(R.id.navView)
 
-        //Implementa o menu hamburguer
-        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+        //Implements hamburger menu
+        NavigationUI.setupActionBarWithNavController(
+            this,
+            navController,
+            drawerLayout
+        )
         NavigationUI.setupWithNavController(navView, navController)
 
-        //Hide Menu if user isn't logged in
-//        navView.menu.removeItem(R.id.userProfileFragment)
+        //Logout
+        navView.menu.findItem(R.id.logoutFragment).setOnMenuItemClickListener {
 
-        //Teste FirebaseFirestore
-//        val firebaseFirestore = FirebaseFirestore.getInstance()
-//        val collection = firebaseFirestore.collection("carros")
-//
-//        val produto = mapOf(
-//            "modelo" to "Troller",
-//            "marca" to "Troller",
-//            "combustivel" to "disel"
-//        )
-//
-//        val task = collection.add(produto)
-//        task.addOnCompleteListener {
-//            if (it.isSuccessful)
-//                Log.i("Firestore", "Cadastro com sucesso")
-//            else
-//                Log.i("Firestore","Falha ao cadastrar")
-//        }
+            firebaseAuth.signOut()
+            navController.navigate(R.id.dashboardFragment)
+            drawerLayout.close()
+            Toast.makeText(this, "Já vai tarde", Toast.LENGTH_LONG).show()
+            true
+        }
+/* TODO: ver por que não está funcionando
+
+        /* If user tries to access profile fragment, the app redirects to
+        login fragment */
+        navView.menu.findItem(R.id.userProfileFragment)
+            .setOnMenuItemClickListener {
+
+                if (currentUser == null) navController.navigate(R.id.loginFragment)
+                else if (currentUser != null) navController.navigate(R.id.userProfileFragment)
+                drawerLayout.close()
+                true
+            }
+
+        /* If user tries to access vehicle list fragment, the app redirects to
+        login fragment */
+        navView.menu.findItem(R.id.listVehicleFragment)
+            .setOnMenuItemClickListener {
+
+                if (currentUser == null) navController.navigate(R.id.loginFragment)
+                else navController.navigate(R.id.listVehicleFragment)
+                drawerLayout.close()
+                true
+            }
+
+        /* If user tries to access trip fragment, the app redirects to
+        login fragment */
+        navView.menu.findItem(R.id.vehicleTripFragment)
+            .setOnMenuItemClickListener {
+
+                if (currentUser == null) navController.navigate(R.id.loginFragment)
+                else navController.navigate(R.id.vehicleTripFragment)
+                drawerLayout.close()
+                true
+            }
+
+ */
     }
 
     //Método para processar a navegação, inclusive o clique da navegação

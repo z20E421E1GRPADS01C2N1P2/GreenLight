@@ -8,7 +8,7 @@ import br.com.greenlight.database.dao.VehicleDao
 import br.com.greenlight.model.Vehicle
 
 class ListVehicleViewModel (
-    private val vehicleDao: VehicleDao,
+    vehicleDao: VehicleDao,
     application: Application
 ) : AndroidViewModel(application) {
 

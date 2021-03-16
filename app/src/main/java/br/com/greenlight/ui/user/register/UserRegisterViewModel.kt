@@ -55,9 +55,7 @@ class UserRegisterViewModel : ViewModel() {
     ) {
         UserDao
             .saveorUpdateUserProfile(
-                userId, nome, username, //Firestore
-                endereco, codigoPostal, dataNascimento
-            )
+                userId, nome, username, endereco, codigoPostal, dataNascimento)
 
             .addOnSuccessListener {
                 saveProfilePicture(userId)
