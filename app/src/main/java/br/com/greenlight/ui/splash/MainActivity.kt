@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
             firebaseAuth.signOut()
             navController.navigate(R.id.dashboardFragment)
             drawerLayout.close()
-            Toast.makeText(this, "Já vai tarde", Toast.LENGTH_LONG).show()
             true
         }
 

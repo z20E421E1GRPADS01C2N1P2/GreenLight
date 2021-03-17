@@ -12,11 +12,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.toColorInt
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import br.com.greenlight.R
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.user_register_fragment.*
 
 class UserRegisterFragment : Fragment() {
@@ -54,7 +56,8 @@ class UserRegisterFragment : Fragment() {
             val password = editTextPassword.text.toString()
             val repeatPassword = editTextRepeatPassword.text.toString()
 
-            if (password == repeatPassword) {
+            if ((password == repeatPassword) && (password.isNotEmpty() &&
+                        repeatPassword.isNotEmpty())) {
                 val email = editTextCadastroEmail.text.toString()
                 val nome = editTextCadastroNome.text.toString()
                 val username = editTextCadastroUsername.text.toString()
@@ -62,11 +65,34 @@ class UserRegisterFragment : Fragment() {
                 val codigoPostal = editTextTextPostalAddress.text.toString()
                 val dataNascimento = editTextCadastroDataNascimento.text.toString()
 
-                registerViewModel.saveRegister(email, password, nome,
-                    username, endereco, codigoPostal, dataNascimento)
-            }
-            else {
+                if (email.isEmpty()) {
+                    registerViewModel.changeMessage("O campo de e-mail está vazio")
+                } else if(nome.isEmpty()) {
+                    registerViewModel.changeMessage("O campo de nome está vazio")
+                } else if (username.isEmpty()) {
+                    registerViewModel.changeMessage("O campo de username está" +
+                            " vazio")
+                } else if(endereco.isEmpty()) {
+                    registerViewModel.changeMessage("O campo de endereço está" +
+                            " vazio")
+                } else if(codigoPostal.isEmpty()) {
+                    registerViewModel.changeMessage("O campo de Código Postal" +
+                            " está vazio")
+                } else if (dataNascimento.isEmpty()) {
+                    registerViewModel.changeMessage("O campo de Data de " +
+                            "Nascimento está vazio")
+                } else {
+                    registerViewModel.saveRegister(
+                        email, password, nome,
+                        username, endereco, codigoPostal, dataNascimento
+                    )
+                }
+            } else if (password != repeatPassword) {
                 registerViewModel.changeMessage("Senhas não conferem")
+            } else if (password.isEmpty() || repeatPassword.isEmpty()) {
+                registerViewModel.changeMessage("O campo de senha está vazio")
+            } else if (password.isEmpty() && repeatPassword.isEmpty()) {
+                registerViewModel.changeMessage("O campo de senha está vazio")
             }
         }
 
