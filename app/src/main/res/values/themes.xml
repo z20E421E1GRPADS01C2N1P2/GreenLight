@@ -17,7 +17,7 @@
     </style>
 
     <!-- Splash Screen theme -->
-    <style name="ColdStart" parent="Theme.GreenLight">
+    <style name="ColdStart" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 <!--        <item name="android:background">@drawable/logo</item>-->
         <item name="android:windowNoTitle">true</item>
         <item name="android:colorBackground">#122a2e</item>

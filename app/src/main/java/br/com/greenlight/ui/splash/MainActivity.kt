@@ -1,7 +1,11 @@
 package br.com.greenlight.ui.splash
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -89,7 +93,9 @@ class MainActivity : AppCompatActivity() {
             }
 
  */
+
     }
+
 
     //Método para processar a navegação, inclusive o clique da navegação
     override fun onSupportNavigateUp(): Boolean {
