@@ -7,14 +7,18 @@
         android:title="@string/link_Login_Menu" />
     <item
         android:id="@+id/userProfileFragment"
+        android:icon="@drawable/ic_baseline_person_24"
         android:title="@string/link_User_Profile_Menu" />
     <item
         android:id="@+id/vehicleTripFragment"
+        android:icon="@drawable/ic_baseline_person_pin_circle_24"
         android:title="@string/link_Car_Trips_Menu" />
     <item
         android:id="@+id/listVehicleFragment"
+        android:icon="@drawable/ic_baseline_directions_car_24"
         android:title="@string/link_Vehicle_Register_Menu" />
     <item
         android:id="@+id/logoutFragment"
+        android:icon="@drawable/ic_baseline_west_24"
         android:title="@string/link_Logout_Menu" />
 </menu>
