@@ -7,8 +7,8 @@ object UserRegistrationUtil {
 
     /**
      * The input is not valid if...
-     * ...the email/password is empty
-     * ... the email is already taken
+     * ...the username/password is empty
+     * ... the username is already taken
      * ... the confirmed password is not the same as the real password
      * ... the password contains less than 6 digits
      */
