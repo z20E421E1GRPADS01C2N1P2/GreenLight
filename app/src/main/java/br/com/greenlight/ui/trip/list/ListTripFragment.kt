@@ -10,10 +10,6 @@ import br.com.greenlight.R
 
 class ListTripFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ListTripFragment()
-    }
-
     private lateinit var viewModel: ListTripViewModel
 
     override fun onCreateView(
@@ -23,10 +19,9 @@ class ListTripFragment : Fragment() {
         return inflater.inflate(R.layout.list_trip_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ListTripViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
 }

@@ -13,7 +13,8 @@ class Trip(
             //var usuario:User?    = null,
             //var Carro: Vehicle?  = null,
     var vehicle:DocumentReference? = null,
-    var usuarioLogado: FirebaseUser? = null
+    var usuarioLogado: FirebaseUser? = null,
+    //var co2Emitido: String? = null
 
 
 ) {
