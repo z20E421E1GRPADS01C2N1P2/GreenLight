@@ -7,16 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.vehicle.list.ListVehicleFragment">
 
-    <ListView
-        android:id="@+id/listViewVehicle"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listVehicles"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </ListView>
+        android:layout_height="match_parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddVehicle"

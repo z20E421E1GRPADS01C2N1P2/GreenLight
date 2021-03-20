@@ -1,5 +1,6 @@
 package br.com.greenlight.model
 
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.DocumentReference
 
@@ -12,6 +13,7 @@ class Trip(
             //var usuario:User?    = null,
             //var Carro: Vehicle?  = null,
     var vehicle:DocumentReference? = null,
+    var usuarioLogado: FirebaseUser? = null
 
 
 ) {
