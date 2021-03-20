@@ -1,6 +1,7 @@
 package br.com.greenlight.ui.trip.from
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +10,7 @@ import br.com.greenlight.api.DistanceApi
 import br.com.greenlight.database.dao.TripDao
 import br.com.greenlight.database.dao.VehicleDaoFirestore
 import br.com.greenlight.model.Trip
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -85,6 +87,12 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
     fun insertTrip(
         nomeViagem: String, partida: String, destino: String, distancia: String
     ) {
+        //TODO: Token do Usuario
+        val usuarioLogado = FirebaseAuth.getInstance().currentUser!!
+       // val tokenUsuario = usuarioLogado.getIdToken()
+
+        Log.i("Usuario Corrente ","$usuarioLogado")
+
         val vehicle = FirebaseFirestore
             .getInstance()
             .collection("carros")
@@ -102,3 +110,5 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
             }
     }
 }
+
+

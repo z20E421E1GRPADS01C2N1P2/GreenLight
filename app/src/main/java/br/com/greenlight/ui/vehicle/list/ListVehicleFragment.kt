@@ -6,10 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.greenlight.R
+import br.com.greenlight.adapter.VehicleRecyclerAdapter
 import br.com.greenlight.database.dao.VehicleDaoFirestore
+import br.com.greenlight.model.Vehicle
+import br.com.greenlight.model.`object`.VehicleUtil
 import kotlinx.android.synthetic.main.list_vehicle_fragment.*
 
 class ListVehicleFragment : Fragment() {
@@ -23,11 +26,9 @@ class ListVehicleFragment : Fragment() {
 
         val application = requireActivity().application
 
-        val listVehicleViewModelFactory = ListVehicleViewModelFactory(
-            VehicleDaoFirestore(),
-            application)
+        val listVehicles = ListVehicleViewModelFactory(VehicleDaoFirestore())
 
-        viewModel = ViewModelProvider(this, listVehicleViewModelFactory)
+        viewModel = ViewModelProvider(this, listVehicles)
             .get(ListVehicleViewModel::class.java)
 
 //        viewModel.status.observe(viewLifecycleOwner, Observer { status ->
@@ -36,18 +37,23 @@ class ListVehicleFragment : Fragment() {
 //        })
 
         viewModel.vehicle.observe(viewLifecycleOwner){
-            listViewVehicle.adapter = ArrayAdapter(
-                requireContext(),
-                android.R.layout.simple_list_item_1,
-                it
-            )
+            setupListViewVehicles(it)
         }
+
+        viewModel.atualizarQuantidade()
 
         return inflater.inflate(
             R.layout.list_vehicle_fragment,
             container,
             false
         )
+    }
+
+    private fun setupListViewVehicles(vehicles: List<Vehicle>) {
+        listVehicles.adapter = VehicleRecyclerAdapter(vehicles) {
+            VehicleUtil.vehicleSelected = it
+        }
+        listVehicles.layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

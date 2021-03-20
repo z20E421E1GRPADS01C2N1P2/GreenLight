@@ -25,12 +25,14 @@ class TripFragment() : Fragment()  {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val destino = arguments?.getString("destino")
         val origem = arguments?.getString("origem")
         var view = inflater.inflate(R.layout.trip_fragment, container, false)
         val application = requireActivity().application
         val tripViewModelFactory = TripViewModelFactory(TripDaoFirestore(),
             application,destino,origem)
+
         viewModel = ViewModelProvider(this, tripViewModelFactory)
             .get(TripViewModel::class.java)
 
