@@ -7,11 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.greenlight.R
 import br.com.greenlight.model.Trip
-import br.com.greenlight.model.Vehicle
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.list_trip_recycler.view.*
-import kotlinx.android.synthetic.main.list_vehicle_recycler.view.*
 import kotlinx.android.synthetic.main.trip_fragment.view.*
 
 class TripRecyclerAdapter(
@@ -24,7 +22,7 @@ class TripRecyclerAdapter(
         val textNomeViagem: TextView = itemView.textViewTripNomeViagem
         val textPartida: TextView = itemView.textViewTripPartida
         val textDestino: TextView = itemView.textViewTripDestino
-        val textDistancia: TextView = itemView.editTextDistancia
+        val textDistancia: TextView = itemView.textViewTripDistancia
         val textVehicle: TextView = itemView.textViewTripVehicle
     }
 
