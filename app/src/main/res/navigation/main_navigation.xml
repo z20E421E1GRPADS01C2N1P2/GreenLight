@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_listVehicleFragment"
             app:destination="@id/listVehicleFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_listTripFragment2"
+            app:destination="@id/listTripFragment" />
     </fragment>
     <fragment
         android:id="@+id/vehicleTripFragment"
@@ -75,4 +78,13 @@
         android:name="br.com.greenlight.ui.maps.LocationActivity"
         android:label="activity_location"
         tools:layout="@layout/activity_location" />
+    <fragment
+        android:id="@+id/listTripFragment"
+        android:name="br.com.greenlight.ui.trip.list.ListTripFragment"
+        android:label="list_trip_fragment"
+        tools:layout="@layout/list_trip_fragment" >
+        <action
+            android:id="@+id/action_listTripFragment2_to_vehicleTripFragment"
+            app:destination="@id/vehicleTripFragment" />
+    </fragment>
 </navigation>

@@ -63,6 +63,7 @@ class VehicleFragment() : Fragment() {
             val placa = edtTextPlaca.text.toString()
             val combustivel = spinnerOptionCombustivel.selectedItem.toString()
             viewModel.insertVehicle(modelo, marca, combustivel, ano, placa)
+
             //
             //se no, meg
         }

@@ -1,7 +1,7 @@
 package br.com.greenlight.model.`object`
 
-import br.com.greenlight.model.Vehicle
+import br.com.greenlight.model.Trip
 
 object TripUtil {
-    var vehcileSelecinado: Vehicle? = null
+    var tripSelecinada: Trip? = null
 }

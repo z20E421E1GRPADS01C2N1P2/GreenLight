@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_baseline_person_24"
         android:title="@string/link_User_Profile_Menu" />
     <item
-        android:id="@+id/listTTripFragment"
+        android:id="@+id/vehicleTripFragment"
         android:icon="@drawable/ic_baseline_person_pin_circle_24"
         android:title="@string/link_Car_Trips_Menu" />
     <item
