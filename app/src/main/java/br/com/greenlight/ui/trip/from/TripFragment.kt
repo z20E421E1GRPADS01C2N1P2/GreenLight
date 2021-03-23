@@ -78,7 +78,8 @@ class TripFragment() : Fragment()  {
             if(it.isNullOrEmpty()){
                 Toast
                     .makeText(requireContext(),
-                        it,
+                        "Não foi possível calcular distancia verificar " +
+                                "Endereços de Destino e Partida",
                         Toast.LENGTH_LONG).show()
             }else{
                 //editTextDistancia.setText()
