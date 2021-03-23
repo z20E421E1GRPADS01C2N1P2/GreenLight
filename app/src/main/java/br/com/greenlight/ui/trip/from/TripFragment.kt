@@ -74,7 +74,16 @@ class TripFragment() : Fragment()  {
                         Toast.LENGTH_LONG
                     ).show()
         })
-
+        viewModel.distancia.observe(viewLifecycleOwner,{
+            if(it.isNullOrEmpty()){
+                Toast
+                    .makeText(requireContext(),
+                        it,
+                        Toast.LENGTH_LONG).show()
+            }else{
+                //editTextDistancia.setText()
+            }
+        })
         return view
     }
 

@@ -53,9 +53,9 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
         viewModelScope.launch {
             val distanceService = DistanceApi.getTripService()
             if (destino != null && origem !=null){
-               // _distancia.value = distanceService.obterDistance(destino,origem)
-               //val trip = distanceService.obterDistance(destino,origem)
-               //_distancia.value = trip.distancia
+                //_distancia.value = distanceService.obterDistance(destino,origem)
+                //val trip = distanceService.obterDistance(destino,origem)
+              // _distancia.value = Trip.distacia
                // _distancia.value = distanceService.obterDistance(origem,..).distancia
             }
 
