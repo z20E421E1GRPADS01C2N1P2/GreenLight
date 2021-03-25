@@ -26,12 +26,11 @@ class TripFragment() : Fragment()  {
         savedInstanceState: Bundle?
     ): View? {
 
-        val destino = arguments?.getString("destino")
-        val origem = arguments?.getString("origem")
+
         var view = inflater.inflate(R.layout.trip_fragment, container, false)
         val application = requireActivity().application
         val tripViewModelFactory = TripViewModelFactory(TripDaoFirestore(),
-            application,destino,origem)
+            application)
 
         viewModel = ViewModelProvider(this, tripViewModelFactory)
             .get(TripViewModel::class.java)
@@ -75,29 +74,29 @@ class TripFragment() : Fragment()  {
                     ).show()
         })
         viewModel.distancia.observe(viewLifecycleOwner,{
-            if(it.isNullOrEmpty()){
-                Toast
-                    .makeText(requireContext(),
-                        "Não foi possível calcular distancia verificar " +
-                                "Endereços de Destino e Partida",
-                        Toast.LENGTH_LONG).show()
-            }else{
-                //editTextDistancia.setText()
+            Log.i("distance",it.toString())
+            if(!it.isNullOrEmpty()){
+                Log.i("distance",it.toString())
             }
         })
+
         return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(TripViewModel::class.java)
-        editTextDestino.setOnFocusChangeListener { v, hasFocus ->
-            val destination = bundleOf("destino" to editTextDestino.text.toString())
-            Log.i("destino", destination.toString())
-        }
+
         editTextPartida.setOnFocusChangeListener { v, hasFocus ->
-            val origin = bundleOf("origem" to editTextPartida.text.toString())
-            Log.i("origem", origin.toString())
+
+            viewModel.origem = editTextPartida.text.toString()
+            Log.i("distance", viewModel.origem.toString())
+        }
+        editTextDestino.setOnFocusChangeListener { v, hasFocus ->
+            viewModel.destino = editTextDestino.text.toString()
+            Log.i("distance",  viewModel.destino.toString())
+            viewModel.obterDistancia()
+
         }
 
          btnBuscar.setOnClickListener {

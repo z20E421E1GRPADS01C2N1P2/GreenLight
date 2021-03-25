@@ -17,12 +17,14 @@ import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.launch
 
 class TripViewModel(private val tripDao: TripDao, application: Application,
-                    private val destino: String?, private val origem:String?) :
+                    ) :
     AndroidViewModel(application) {
 
     private val app = application
     private val _status = MutableLiveData<Boolean>()
     val status: LiveData<Boolean> = _status
+    var destino:String? = null
+    var origem:String? =  null
 
     private val _msg = MutableLiveData<String?>()
     val msg: MutableLiveData<String?> = _msg
@@ -50,17 +52,36 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
                     _carros.value!!.add(it.id)
                 }
             }
+
+
+    }
+    fun obterDistancia () {
         viewModelScope.launch {
-            val distanceService = DistanceApi.getTripService()
-            if (destino != null && origem !=null){
-                //_distancia.value = distanceService.obterDistance(destino,origem)
-                //val trip = distanceService.obterDistance(destino,origem)
-              // _distancia.value = Trip.distacia
-               // _distancia.value = distanceService.obterDistance(origem,..).distancia
+            try {
+                val distanceService = DistanceApi.getTripService()
+                if (!destino.isNullOrBlank() && !origem.isNullOrBlank()) {
+                    Log.i("distance", "entrei no if")
+                    val tripDetail =
+                        distanceService.obterDistance(origem, destino)
+                    Log.i("distance", tripDetail.toString())
+                    if(!tripDetail.rows.isNullOrEmpty())
+                    {
+                        Log.i("distance", "${tripDetail.rows[0]}")
+                    }else{
+                        Log.i("distance","Rows é nula")
+                    }
+                    //_distancia.value = tripDetail!!.rows[0].elements[0].distance.value.toString()
+                    //_distancia.value = distanceService.obterDistance(origem,destino)
+                    //_distancia.value = distanceService.obterDistance(destino,origem)
+                    //val trip = distanceService.obterDistance(destino,origem)
+                    // _distancia.value = Trip.distacia
+                } else {
+                    _msg.value = "Não foi possível calcular a distância."
+                }
+            } catch (e:Exception){
+                _msg.value = e.message
             }
-
         }
-
     }
 
     fun store(partida: String, destino: String) {
