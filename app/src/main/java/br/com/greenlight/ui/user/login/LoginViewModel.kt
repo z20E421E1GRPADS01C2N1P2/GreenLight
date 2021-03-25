@@ -25,15 +25,5 @@ class LoginViewModel : ViewModel() {
             .addOnFailureListener {
                 _msg.value = "Usuário e/ou senha incorreto(s)"
             }
-
-
-
-
-//        if(email.isNullOrBlank() || password.isNullOrBlank()) {
-//            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-//                .addOnFailureListener {
-//                    _msg.value = "E-mail e/ou senha não confere(m)"
-//                }
-//        }
     }
 }

@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import br.com.greenlight.R
 import br.com.greenlight.database.dao.VehicleDaoFirestore
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.vehicle_fragment.*
 
 
@@ -24,8 +25,10 @@ class VehicleFragment() : Fragment() {
     ): View? {
 
         val application = requireActivity().application
-        val formCarroViewModelFactory = FormVehicleViewModelFactory(VehicleDaoFirestore(),
-            application)
+        val formCarroViewModelFactory = FormVehicleViewModelFactory(
+            VehicleDaoFirestore(),
+            application
+        )
 
         viewModel = ViewModelProvider(this, formCarroViewModelFactory)
             .get(VehicleViewModel::class.java)
@@ -36,17 +39,12 @@ class VehicleFragment() : Fragment() {
         })
 
         viewModel.spinnerItems().observe(viewLifecycleOwner, { spinnerData ->
-            val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout
-                .simple_spinner_item, spinnerData)
-            //TODO: Desabilitar a primeira opção do spinner
-//            spinnerData[0]
+            val spinnerAdapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_spinner_item,
+                spinnerData
+            )
             spinnerOptionCombustivel.adapter = spinnerAdapter
-
-//            spinnerOptionCombustivel.setOnItemClickListener(
-//                AdapterView.OnItemSelectedListener{
-//                    // onItemSelected (pos)
-//                    //...
-//                })
         })
 
         return inflater.inflate(R.layout.vehicle_fragment, container, false)
@@ -55,17 +53,45 @@ class VehicleFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btnSaveVehicle.setOnClickListener {
-            // verificar se o combustivel  ok
-            //
             val modelo = edtTextModelo.text.toString()
             val marca = edtTextMarca.text.toString()
             val ano = editTextAno.text.toString()
             val placa = edtTextPlaca.text.toString()
             val combustivel = spinnerOptionCombustivel.selectedItem.toString()
-            viewModel.insertVehicle(modelo, marca, combustivel, ano, placa)
 
-            //
-            //se no, meg
+            when {
+                modelo.isNullOrBlank() -> Snackbar.make(
+                    requireContext(),
+                    this.requireView(),
+                    "Preencha o campo Modelo corretamente",
+                    Snackbar.LENGTH_LONG
+                ).show()
+                marca.isNullOrBlank() -> Snackbar.make(
+                    requireContext(),
+                    this.requireView(),
+                    "Preencha o campo Marca corretamente",
+                    Snackbar.LENGTH_LONG
+                ).show()
+                ano.isNullOrBlank() -> Snackbar.make(
+                    requireContext(),
+                    this.requireView(),
+                    "Preencha o campo Ano corretamente",
+                    Snackbar.LENGTH_LONG
+                ).show()
+                placa.isNullOrBlank() -> Snackbar.make(
+                    requireContext(),
+                    this.requireView(),
+                    "Preencha o campo Placa corretamente",
+                    Snackbar.LENGTH_LONG
+                ).show()
+                else -> viewModel.insertVehicle(
+                    modelo,
+                    marca,
+                    combustivel,
+                    ano,
+                    placa
+                )
+            }
         }
     }
 }

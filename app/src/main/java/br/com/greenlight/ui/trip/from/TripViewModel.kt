@@ -56,12 +56,12 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
 
     }
     fun obterDistancia () {
-        viewModelScope.launch {
+       /* viewModelScope.launch {
             try {
                 val distanceService = DistanceApi.getTripService()
                 if (!destino.isNullOrBlank() && !origem.isNullOrBlank()) {
                     Log.i("distance", "entrei no if")
-                    val tripDetail =
+                    val tripDetail = null;
                         distanceService.obterDistance(origem, destino)
                     Log.i("distance", tripDetail.toString())
                     if(!tripDetail.rows.isNullOrEmpty())
@@ -81,7 +81,7 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
             } catch (e:Exception){
                 _msg.value = e.message
             }
-        }
+        }*/
     }
 
     fun store(partida: String, destino: String) {
