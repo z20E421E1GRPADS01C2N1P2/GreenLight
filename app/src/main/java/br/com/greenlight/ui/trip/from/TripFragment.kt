@@ -29,7 +29,8 @@ class TripFragment() : Fragment() {
 
         val destino = arguments?.getString("destino")
         val origem = arguments?.getString("origem")
-        var view = inflater.inflate(R.layout.trip_fragment, container, false)
+
+        val view = inflater.inflate(R.layout.trip_fragment, container, false)
         val application = requireActivity().application
         val tripViewModelFactory = TripViewModelFactory(
             TripDaoFirestore(),
