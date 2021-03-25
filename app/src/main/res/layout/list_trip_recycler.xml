@@ -12,7 +12,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/allerta"
-        android:text="Nome da viagem"
+        android:text="@string/nome_da_viagem"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +24,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/allerta"
-        android:text="Partida: "
+        android:text="@string/partida"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTripNomeViagem" />
 
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/allerta"
-        android:text="Partida"
+        android:text="@string/partida_viagem"
         app:layout_constraintStart_toEndOf="@+id/textView25"
         app:layout_constraintTop_toBottomOf="@+id/textViewTripNomeViagem" />
 
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/allerta"
-        android:text="Destino"
+        android:text="@string/destino"
         app:layout_constraintStart_toEndOf="@+id/textView28"
         app:layout_constraintTop_toBottomOf="@+id/textViewTripNomeViagem" />
 
@@ -55,7 +55,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/allerta"
-        android:text="Destino: "
+        android:text="@string/destino_viagem"
         app:layout_constraintStart_toEndOf="@+id/textViewTripPartida"
         app:layout_constraintTop_toBottomOf="@+id/textViewTripNomeViagem" />
 
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/allerta"
-        android:text="Distancia"
+        android:text="@string/distancia"
         app:layout_constraintEnd_toStartOf="@+id/textView30"
         app:layout_constraintTop_toBottomOf="@+id/textViewTripNomeViagem" />
 
@@ -76,7 +76,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="4dp"
         android:fontFamily="@font/allerta"
-        android:text="Km"
+        android:text="@string/km"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTripNomeViagem" />
 
@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/allerta"
-        android:text="Veiculo"
+        android:text="@string/veiculo"
         app:layout_constraintStart_toEndOf="@+id/textView33"
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
@@ -96,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/allerta"
-        android:text="CO2Emitido"
+        android:text="@string/co2emitido"
         app:layout_constraintEnd_toStartOf="@+id/textView34"
         app:layout_constraintTop_toBottomOf="@+id/textViewTripDistancia" />
 
@@ -107,7 +107,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/allerta"
-        android:text="Veículo: "
+        android:text="@string/ve_culo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
@@ -118,7 +118,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/allerta"
-        android:text=" g/Km"
+        android:text="@string/g_km"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTripDistancia" />
 
