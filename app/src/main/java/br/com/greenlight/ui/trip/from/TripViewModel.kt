@@ -23,8 +23,8 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
     private val app = application
     private val _status = MutableLiveData<Boolean>()
     val status: LiveData<Boolean> = _status
-    var destino:String? = null
-    var origem:String? =  null
+    var destino = listOf<String?>()
+    var origem = listOf<String?>()
 
     private val _msg = MutableLiveData<String?>()
     val msg: MutableLiveData<String?> = _msg
@@ -56,16 +56,16 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
 
     }
     fun obterDistancia () {
-       /* viewModelScope.launch {
+        viewModelScope.launch {
             try {
                 val distanceService = DistanceApi.getTripService()
-                if (!destino.isNullOrBlank() && !origem.isNullOrBlank()) {
+                if (!destino.isNullOrEmpty() && !origem.isNullOrEmpty()) {
                     Log.i("distance", "entrei no if")
-                    val tripDetail = null;
-                        distanceService.obterDistance(origem, destino)
+                    val tripDetail = distanceService.obterDistance(origem, destino)
                     Log.i("distance", tripDetail.toString())
                     if(!tripDetail.rows.isNullOrEmpty())
                     {
+                        _distancia.value = tripDetail!!.rows[0].elements[0].distance.value.toString()
                         Log.i("distance", "${tripDetail.rows[0]}")
                     }else{
                         Log.i("distance","Rows é nula")
@@ -81,7 +81,7 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
             } catch (e:Exception){
                 _msg.value = e.message
             }
-        }*/
+        }
     }
 
     fun store(partida: String, destino: String) {

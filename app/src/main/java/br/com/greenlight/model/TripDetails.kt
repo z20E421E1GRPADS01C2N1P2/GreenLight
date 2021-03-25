@@ -8,3 +8,8 @@ class TripDetails (
     val rows : List<Rows>,
     val status : String
 )
+{
+    override fun toString(): String = "Destino: $destination_addresses " +
+            "Origem: $origin_addresses"
+
+}

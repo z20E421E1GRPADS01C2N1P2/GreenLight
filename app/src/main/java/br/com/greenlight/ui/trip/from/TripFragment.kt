@@ -79,7 +79,7 @@ class TripFragment() : Fragment() {
         viewModel.distancia.observe(viewLifecycleOwner,{
             Log.i("distance",it.toString())
             if(!it.isNullOrEmpty()){
-                Log.i("distance",it.toString())
+               editTextDistancia.setText(it)
             }
         })
 
@@ -98,11 +98,11 @@ class TripFragment() : Fragment() {
 
         editTextPartida.setOnFocusChangeListener { v, hasFocus ->
 
-            viewModel.origem = editTextPartida.text.toString()
+            viewModel.origem = listOf(editTextPartida.text.toString())
             Log.i("distance", viewModel.origem.toString())
         }
         editTextDestino.setOnFocusChangeListener { v, hasFocus ->
-            viewModel.destino = editTextDestino.text.toString()
+            viewModel.destino = listOf(editTextDestino.text.toString())
             Log.i("distance",  viewModel.destino.toString())
             viewModel.obterDistancia()
 
