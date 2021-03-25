@@ -1,12 +1,14 @@
 package br.com.greenlight
 
+import br.com.greenlight.model.User
+import br.com.greenlight.model.Vehicle
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.lang.Exception
 import kotlin.jvm.Throws
 
 class VehicleTest {
-    
+
     @Test
     @Throws(Exception::class)
     fun `carbon emission by fuel`() {
@@ -32,5 +34,21 @@ class VehicleTest {
         assertEquals(actualDiesel, expectedDiesel)
         assertEquals(actualEtanol, expectedEtanol)
         assertEquals(actualGas, expectedGas)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun `adding vehicle`() {
+
+        val modelo = "Ka"
+        val marca = "Ford"
+        val combustivel = "gasolina"
+        val ano = "2000"
+        val placa = "DFG45F55"
+
+        val actualVehicle = Vehicle("Ka","Ford","gasolina", "2000", "DFG45F55")
+        val resultVehicle = Vehicle(modelo,marca,combustivel,ano, placa)
+
+        assertEquals(actualVehicle.toString(), resultVehicle.toString())
     }
 }
