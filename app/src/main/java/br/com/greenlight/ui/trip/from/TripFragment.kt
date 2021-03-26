@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import br.com.greenlight.R
@@ -77,12 +78,17 @@ class TripFragment() : Fragment() {
                         Toast.LENGTH_LONG
                     ).show()
         })
-        viewModel.distancia.observe(viewLifecycleOwner,{
+        viewModel.distancia.observe(viewLifecycleOwner){
             Log.i("distance",it.toString())
             if(!it.isNullOrEmpty()){
-                textViewDistancia.setText(it)
+                val divisao = it.toFloat()
+                val conta = divisao /1000
+                Log.i("distance",conta.toString())
+                textViewDistancia.setText(conta.toString())
+                textViewKM.setText("KM")
+                textViewKM.isVisible
             }
-        })
+        }
 
         return view
     }
