@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import br.com.greenlight.R
 import br.com.greenlight.database.dao.TripDaoFirestore
 import com.google.android.material.snackbar.Snackbar
+import com.google.common.primitives.UnsignedBytes.toInt
 import kotlinx.android.synthetic.main.trip_fragment.*
 
 class TripFragment() : Fragment() {
@@ -79,7 +80,7 @@ class TripFragment() : Fragment() {
         viewModel.distancia.observe(viewLifecycleOwner,{
             Log.i("distance",it.toString())
             if(!it.isNullOrEmpty()){
-               editTextDistancia.setText(it)
+                textViewDistancia.setText(it)
             }
         })
 
@@ -112,7 +113,7 @@ class TripFragment() : Fragment() {
             val nomeViagem = edtTextNomeViagem.text.toString()
             val destino = editTextDestino.text.toString()
             val partida = editTextPartida.text.toString()
-            val distancia = editTextDistancia.text.toString()
+            val distancia = textViewDistancia.text.toString()
 
             when {
                 nomeViagem.isNullOrBlank() -> Snackbar.make(
