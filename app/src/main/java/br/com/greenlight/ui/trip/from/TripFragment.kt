@@ -81,10 +81,9 @@ class TripFragment() : Fragment() {
         viewModel.distancia.observe(viewLifecycleOwner){
             Log.i("distance",it.toString())
             if(!it.isNullOrEmpty()){
-                val divisao = it.toFloat()
-                val conta = divisao /1000
-                Log.i("distance",conta.toString())
-                textViewDistancia.setText(conta.toString())
+                Log.i("distance",it.toString())
+                var valorIt = it.split("km")
+                textViewDistancia.setText(valorIt[0])
                 textViewKM.setText("KM")
                 textViewKM.isVisible
             }

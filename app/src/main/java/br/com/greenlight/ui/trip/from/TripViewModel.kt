@@ -65,7 +65,8 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
                     Log.i("distance", tripDetail.toString())
                     if(!tripDetail.rows.isNullOrEmpty())
                     {
-                        _distancia.value = tripDetail!!.rows[0].elements[0].distance.value.toString()
+                        _distancia.value = tripDetail!!.rows[0].elements[0]
+                            .distance.text.toString()
                         Log.i("distance", "${tripDetail.rows[0]}")
                     }else{
                         Log.i("distance","Rows é nula")
