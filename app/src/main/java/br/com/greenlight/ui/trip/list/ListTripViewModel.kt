@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.greenlight.database.dao.TripDao
 import br.com.greenlight.model.Trip
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class ListTripViewModel(private val tripDao: TripDao) : ViewModel() {

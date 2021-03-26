@@ -44,7 +44,7 @@ class TripRecyclerAdapter(
         holder.textPartida.text = trip.partida
         holder.textDestino.text = trip.destino
         holder.textDistancia.text = trip.distancia
-        holder.textVehicle.text = trip.vehicle.toString()
+        holder.textVehicle.text = trip.vehicle?.get().toString()
 
 
         holder.itemView.btnDeleteTrip.setOnClickListener {

@@ -109,7 +109,7 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
         nomeViagem: String, partida: String, destino: String, distancia: String
     ) {
         //TODO: Token do Usuario
-        val usuarioLogado = FirebaseAuth.getInstance().currentUser!!
+        val usuarioLogado = FirebaseAuth.getInstance().currentUser.uid
        // val tokenUsuario = usuarioLogado.getIdToken()
 
         Log.i("Usuario Corrente ","$usuarioLogado")
@@ -120,7 +120,11 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
             .document(placa!!)
 
 
-        val trip = Trip( nomeViagem,partida, destino, distancia, vehicle)
+
+
+
+        val trip = Trip( nomeViagem,partida, destino, distancia, vehicle,
+            usuarioLogado)
         tripDao.insert(trip)
             .addOnSuccessListener {
                 _status.value = true
