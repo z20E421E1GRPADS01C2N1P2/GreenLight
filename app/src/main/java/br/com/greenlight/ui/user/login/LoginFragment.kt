@@ -1,8 +1,12 @@
 package br.com.greenlight.ui.user.login
 
+import android.app.Activity
+import android.content.Context
+import android.inputmethodservice.Keyboard
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -72,10 +76,21 @@ class LoginFragment : Fragment() {
                 loading.visibility = View.VISIBLE
                 loginViewModel.verificarUsuario(email, password)
             }
+
+            hideKeyboard()
         }
 
         btnLoginCadastrar.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_userRegisterFragment)
         }
+    }
+
+    private fun Fragment.hideKeyboard() {
+        view?.let { activity?.hideKeyboard(it) }
+    }
+
+    private fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

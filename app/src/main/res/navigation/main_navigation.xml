@@ -62,7 +62,11 @@
         android:id="@+id/userRegisterFragment"
         android:name="br.com.greenlight.ui.user.register.UserRegisterFragment"
         android:label="Cadastro"
-        tools:layout="@layout/user_register_fragment" />
+        tools:layout="@layout/user_register_fragment" >
+        <action
+            android:id="@+id/action_userRegisterFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="br.com.greenlight.ui.user.profile.UserProfileFragment"

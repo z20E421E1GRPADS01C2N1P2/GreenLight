@@ -1,5 +1,7 @@
 package br.com.greenlight.ui.trip.from
 
+import android.app.Activity
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -30,11 +33,12 @@ class TripFragment() : Fragment() {
     ): View? {
 
 
-
-        var view = inflater.inflate(R.layout.trip_fragment, container, false)
+        val view = inflater.inflate(R.layout.trip_fragment, container, false)
         val application = requireActivity().application
-        val tripViewModelFactory = TripViewModelFactory(TripDaoFirestore(),
-            application)
+        val tripViewModelFactory = TripViewModelFactory(
+            TripDaoFirestore(),
+            application
+        )
 
 
         viewModel = ViewModelProvider(this, tripViewModelFactory)
@@ -78,10 +82,10 @@ class TripFragment() : Fragment() {
                         Toast.LENGTH_LONG
                     ).show()
         })
-        viewModel.distancia.observe(viewLifecycleOwner){
-            Log.i("distance",it.toString())
-            if(!it.isNullOrEmpty()){
-                Log.i("distance",it.toString())
+        viewModel.distancia.observe(viewLifecycleOwner) {
+            Log.i("distance", it.toString())
+            if (!it.isNullOrEmpty()) {
+                Log.i("distance", it.toString())
                 var valorIt = it.split("km")
                 textViewDistancia.setText(valorIt[0])
                 textViewKM.setText("KM")
@@ -109,7 +113,7 @@ class TripFragment() : Fragment() {
         }
         editTextDestino.setOnFocusChangeListener { v, hasFocus ->
             viewModel.destino = listOf(editTextDestino.text.toString())
-            Log.i("distance",  viewModel.destino.toString())
+            Log.i("distance", viewModel.destino.toString())
             viewModel.obterDistancia()
 
         }
@@ -153,7 +157,17 @@ class TripFragment() : Fragment() {
                 )
             }
         }
+
+        hideKeyboard()
     }
 
+    private fun Fragment.hideKeyboard() {
+        view?.let { activity?.hideKeyboard(it) }
+    }
 
+    private fun Context.hideKeyboard(view: View) {
+        val inputMethodManager =
+            getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
 }
