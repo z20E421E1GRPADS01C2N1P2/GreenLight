@@ -15,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
 
 class TripViewModel(private val tripDao: TripDao, application: Application,
                     ) :
@@ -121,7 +122,8 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
             .document(placa!!)
 
         val combustivel = "Disel"
-        var carbono = carbonoEmitido(combustivel,distancia)
+        val km = distancia
+        val carbono = carbonoEmitido(combustivel,km)
 
         val trip = Trip( nomeViagem,partida, destino, distancia, vehicle, carbono)
         tripDao.insert(trip)
@@ -145,15 +147,15 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
     }
 
     private fun carbonoEmitido(combustivel: String, distancia: String):String{
-        val distancia = distancia.toInt()
+        val km: Int = distancia.toInt()
         var carbonoEmitido = 0
 
         if (combustivel == "Disel")
-            carbonoEmitido = distancia * 280
+            carbonoEmitido = km * 280
         if (combustivel == "Gasolina")
-            carbonoEmitido = distancia * 217
+            carbonoEmitido = km * 217
         if (combustivel == "Álcool")
-            carbonoEmitido = distancia * 66
+            carbonoEmitido = km * 66
 
         return carbonoEmitido.toString()
 
