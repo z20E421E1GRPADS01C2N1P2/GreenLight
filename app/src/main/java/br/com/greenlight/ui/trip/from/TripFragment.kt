@@ -87,7 +87,7 @@ class TripFragment() : Fragment() {
             if (!it.isNullOrEmpty()) {
                 Log.i("distance", it.toString())
                 var valorIt = it.split("km")
-                textViewDistancia.setText(valorIt[0])
+                textViewDistancia.setText(valorIt[0].trim())
                 textViewKM.setText("KM")
                 textViewKM.isVisible
             }

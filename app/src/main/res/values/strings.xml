@@ -43,7 +43,7 @@
     <string name="distancia">Distancia</string>
     <string name="km">Km</string>
     <string name="veiculo">Veiculo</string>
-    <string name="co2emitido">CO2Emitido</string>
+    <string name="co2emitido">CO² Emitido: </string>
     <string name="ve_culo">Veículo:</string>
     <string name="g_km">g/Km</string>
     <string name="modelo">Modelo</string>

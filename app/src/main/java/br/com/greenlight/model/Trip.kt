@@ -1,9 +1,7 @@
 package br.com.greenlight.model
 
-import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.QuerySnapshot
 
 class Trip(
     @DocumentId
@@ -15,6 +13,7 @@ class Trip(
             //var Carro: Vehicle?  = null,
     var vehicle: DocumentReference? = null,
     var usuarioLogado: String? = null,
+    var carbonoEmitido: String? = null
     //var co2Emitido: String? = null
 
 
