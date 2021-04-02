@@ -65,7 +65,7 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
                     Log.i("distance", tripDetail.toString())
                     if(!tripDetail.rows.isNullOrEmpty())
                     {
-                        _distancia.value = tripDetail!!.rows[0].elements[0]
+                        _distancia.value = tripDetail.rows[0].elements[0]
                             .distance.text.toString()
                         Log.i("distance", "${tripDetail.rows[0]}")
                     }else{
@@ -120,9 +120,10 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
             .collection("carros")
             .document(placa!!)
 
+        val combustivel = "Disel"
+        var carbono = carbonoEmitido(combustivel,distancia)
 
-
-        val trip = Trip( nomeViagem,partida, destino, distancia, vehicle)
+        val trip = Trip( nomeViagem,partida, destino, distancia, vehicle, carbono)
         tripDao.insert(trip)
             .addOnSuccessListener {
                 _status.value = true

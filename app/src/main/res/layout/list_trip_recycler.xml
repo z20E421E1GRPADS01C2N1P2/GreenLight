@@ -86,10 +86,10 @@
         android:id="@+id/textViewTripVehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/allerta"
         android:text="@string/veiculo"
-        app:layout_constraintEnd_toStartOf="@+id/textView32"
         app:layout_constraintStart_toEndOf="@+id/textView33"
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
@@ -98,9 +98,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/allerta"
         android:text="@string/co2emitido"
-        app:layout_constraintEnd_toStartOf="@+id/textViewCO2Emitido"
+        app:layout_constraintEnd_toStartOf="@+id/textViewCarbonoEmitido"
         app:layout_constraintTop_toBottomOf="@+id/textViewTripDistancia" />
 
     <TextView
@@ -123,6 +124,14 @@
         android:fontFamily="@font/allerta"
         android:text="@string/g_km"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTripDistancia" />
+
+    <TextView
+        android:id="@+id/textViewCarbonoEmitido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewCO2Emitido"
         app:layout_constraintTop_toBottomOf="@+id/textViewTripDistancia" />
 
     <ImageButton
