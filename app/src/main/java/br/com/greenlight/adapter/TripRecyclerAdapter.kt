@@ -43,7 +43,7 @@ class TripRecyclerAdapter(
         holder.textNomeViagem.text = trip.nomeViagem
         holder.textPartida.text = trip.partida
         holder.textDestino.text = trip.destino
-        holder.textDistancia.text = trip.distancia
+        holder.textDistancia.text = trip.distancia.toString()
         holder.textVehicle.text = trip.vehicle?.get().toString()
 
 

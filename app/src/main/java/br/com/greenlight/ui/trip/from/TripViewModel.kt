@@ -110,7 +110,7 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
         nomeViagem: String, partida: String, destino: String, distancia: String
     ) {
         //TODO: Token do Usuario
-        val usuarioLogado = FirebaseAuth.getInstance().currentUser.uid
+        val usuarioLogado = FirebaseAuth.getInstance().currentUser!!
        // val tokenUsuario = usuarioLogado.getIdToken()
 
         Log.i("Usuario Corrente ","$usuarioLogado")
@@ -122,10 +122,7 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
 
 
 
-
-
-        val trip = Trip( nomeViagem,partida, destino, distancia, vehicle,
-            usuarioLogado)
+        val trip = Trip( nomeViagem,partida, destino, distancia, vehicle)
         tripDao.insert(trip)
             .addOnSuccessListener {
                 _status.value = true
@@ -134,6 +131,31 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
             .addOnFailureListener {
                 _msg.value = "${it.message}"
             }
+    }
+
+    private fun carroSelecionado (placa: String): StorageReference {
+        var firebase = FirebaseStorage.getInstance()
+
+        val firebaseReference = firebase.reference
+
+        val fileReference = firebaseReference.child("carros/$placa")
+
+        return fileReference
+    }
+
+    private fun carbonoEmitido(combustivel: String, distancia: String):String{
+        val distancia = distancia.toInt()
+        var carbonoEmitido = 0
+
+        if (combustivel == "Disel")
+            carbonoEmitido = distancia * 280
+        if (combustivel == "Gasolina")
+            carbonoEmitido = distancia * 217
+        if (combustivel == "Álcool")
+            carbonoEmitido = distancia * 66
+
+        return carbonoEmitido.toString()
+
     }
 }
 

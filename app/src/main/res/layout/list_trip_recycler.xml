@@ -32,6 +32,7 @@
         android:id="@+id/textViewTripPartida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/allerta"
         android:text="@string/partida_viagem"
@@ -42,6 +43,7 @@
         android:id="@+id/textViewTripDestino"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/allerta"
         android:text="@string/destino"
@@ -87,6 +89,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/allerta"
         android:text="@string/veiculo"
+        app:layout_constraintEnd_toStartOf="@+id/textView32"
         app:layout_constraintStart_toEndOf="@+id/textView33"
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
@@ -97,7 +100,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/allerta"
         android:text="@string/co2emitido"
-        app:layout_constraintEnd_toStartOf="@+id/textView34"
+        app:layout_constraintEnd_toStartOf="@+id/textViewCO2Emitido"
         app:layout_constraintTop_toBottomOf="@+id/textViewTripDistancia" />
 
     <TextView
@@ -112,7 +115,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
     <TextView
-        android:id="@+id/textView34"
+        android:id="@+id/textViewCO2Emitido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
