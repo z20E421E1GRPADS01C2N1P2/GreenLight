@@ -15,6 +15,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
 import br.com.greenlight.R
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var navController: NavController
     lateinit var navView: NavigationView
 
-//    private lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,16 +39,16 @@ class MainActivity : AppCompatActivity() {
         //logout
         val firebaseAuth = FirebaseAuth.getInstance()
 
-//        auth = Firebase.auth
+        auth = Firebase.auth
 //        var currentUser = firebaseAuth.currentUser
-        var currentUser = Firebase.auth.currentUser
+//        var currentUser = Firebase.auth.currentUser
 
         drawerLayout = this.findViewById(R.id.drawerLayout)
         navController = this.findNavController(R.id.fragment)
         navView = this.findViewById(R.id.navView)
 
-        val listVehicleItemMenu = navView.menu.findItem(R.id.listVehicleFragment)
-        val logoutItemMenu = navView.menu.findItem(R.id.logoutFragment)
+//        val listVehicleItemMenu = navView.menu.findItem(R.id.listVehicleFragment)
+//        val logoutItemMenu = navView.menu.findItem(R.id.logoutFragment)
 
         //Implements hamburger menu
         NavigationUI.setupActionBarWithNavController(
@@ -57,22 +58,37 @@ class MainActivity : AppCompatActivity() {
         )
         NavigationUI.setupWithNavController(navView, navController)
 
+        navView.menu.findItem(R.id.logoutFragment).setOnMenuItemClickListener {
+
+            it.isVisible = false
+            true
+        }
+
         //Logout
         navView.menu.findItem(R.id.logoutFragment).setOnMenuItemClickListener {
 
-            Firebase.auth.signOut()
-            currentUser = null
+            auth.signOut()
+            it.isVisible = false
             navController.navigate(R.id.dashboardFragment)
             drawerLayout.close()
             true
         }
 
-//        if (currentUser == null) {
-//            listVehicleItemMenu.isEnabled = false
-//            logoutItemMenu.isEnabled = false
-//        } else {
-//            listVehicleItemMenu.isEnabled = true
-//            logoutItemMenu.isEnabled = true
+//        navView.menu.findItem(R.id.loginFragment).setOnMenuItemClickListener {
+//
+//            auth.signIn()
+//            logoutItemMenu.isVisible = true
+//            navController.navigate(R.id.dashboardFragment)
+//            drawerLayout.close()
+//            true
+//        }
+
+//        if (currentUser.) {
+//            listVehicleItemMenu.isVisible = false
+//            logoutItemMenu.isVisible = false
+//        } else if(currentUser.isEmailVerified){
+//            listVehicleItemMenu.isVisible = true
+//            logoutItemMenu.isVisible = true
 //        }
 
 //        navController.addOnDestinationChangedListener { controller, destination, arguments ->

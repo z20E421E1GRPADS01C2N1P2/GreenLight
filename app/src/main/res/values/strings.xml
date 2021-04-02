@@ -83,4 +83,5 @@
     <string name="marca_txtview">Marca:</string>
     <string name="modelo_do_ve_culo_txtview">Modelo do Veículo:</string>
     <string name="cadastro_de_ve_culo">Cadastro de Veículo:</string>
+    <string name="Km">Km</string>
 </resources>

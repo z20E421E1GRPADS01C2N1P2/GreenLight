@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import br.com.greenlight.R
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.login_fragment.*
 
 class LoginFragment : Fragment() {
@@ -24,11 +25,26 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-//        val firebaseAuth = FirebaseAuth.getInstance()
-//        val firebaseUser = firebaseAuth.currentUser
+        val view = inflater.inflate(R.layout.login_fragment, container, false)
 
-//        if (firebaseUser == null)
-//            findNavController().popBackStack()
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val firebaseUser = firebaseAuth.currentUser
+
+        if (firebaseUser == null)
+            findNavController().popBackStack()
+
+//        navView.menu.findItem(R.id.loginFragment).setOnMenuItemClickListener {
+//
+//            if (firebaseUser != null) {
+//                it.isVisible = false
+//                navView.menu.findItem(R.id.logoutFragment).isVisible = true
+//            } else {
+//                it.isVisible = true
+//                navView.menu.findItem(R.id.logoutFragment).isVisible = false
+//            }
+//
+//            true
+//        }
 
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
@@ -48,14 +64,11 @@ class LoginFragment : Fragment() {
                 ).show()
         }
 
-        return inflater.inflate(R.layout.login_fragment, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        val firebaseAuth = FirebaseAuth.getInstance()
-//        val firebaseUser = firebaseAuth.currentUser
 
         btnLogin.setOnClickListener {
 
