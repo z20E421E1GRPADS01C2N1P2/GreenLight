@@ -20,6 +20,7 @@ import androidx.navigation.fragment.findNavController
 import br.com.greenlight.R
 import br.com.greenlight.database.dao.TripDaoFirestore
 import com.google.android.material.snackbar.Snackbar
+import com.google.common.primitives.UnsignedBytes.toInt
 import kotlinx.android.synthetic.main.trip_fragment.*
 
 class TripFragment() : Fragment() {
@@ -65,15 +66,6 @@ class TripFragment() : Fragment() {
                         viewModel.vehicleSelecionadoo(placa)
                     }
                 }
-        })
-
-        viewModel.spinnerItems().observe(viewLifecycleOwner, { spinnerData ->
-            val spinnerAdapter = ArrayAdapter(
-                requireContext(),
-                android.R.layout.simple_spinner_item,
-                spinnerData
-            )
-            spinnerOptionCombustivel.adapter = spinnerAdapter
         })
 
         viewModel.status.observe(viewLifecycleOwner, Observer { status ->
@@ -131,7 +123,6 @@ class TripFragment() : Fragment() {
             val destino = editTextDestino.text.toString()
             val partida = editTextPartida.text.toString()
             val distancia = textViewDistancia.text.toString()
-            val combustivel = spinnerOptionCombustivel.selectedItem.toString()
 
             when {
                 nomeViagem.isNullOrBlank() -> Snackbar.make(
@@ -162,8 +153,7 @@ class TripFragment() : Fragment() {
                     nomeViagem,
                     partida,
                     destino,
-                    distancia,
-                    combustivel
+                    distancia
                 )
             }
         }
