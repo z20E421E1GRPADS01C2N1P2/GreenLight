@@ -12,17 +12,15 @@ import br.com.greenlight.database.dao.VehicleDaoFirestore
 import br.com.greenlight.model.Trip
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.launch
 
 class TripViewModel(private val tripDao: TripDao, application: Application,
                     ) :
     AndroidViewModel(application) {
 
-    private val app = application
     private val _status = MutableLiveData<Boolean>()
     val status: LiveData<Boolean> = _status
+
     var destino = listOf<String?>()
     var origem = listOf<String?>()
 
@@ -37,7 +35,8 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
 
     private var placa: String? = null
 
-    private var uid: String? = null
+    private val _spinner = MutableLiveData<List<String>>()
+    private val spinner: LiveData<List<String>> = _spinner
 
     init {
         _status.value = false
@@ -52,9 +51,13 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
                     _carros.value!!.add(it.id)
                 }
             }
-
-
     }
+
+    fun spinnerItems(): LiveData<List<String>> {
+        _spinner.value = listOf("Gasolina", "Álcool", "Diesel")
+        return spinner
+    }
+
     fun obterDistancia () {
         viewModelScope.launch {
             try {
@@ -85,29 +88,16 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
         }
     }
 
-    fun store(partida: String, destino: String) {
-        _status.value = false
-        val trip = Trip(partida, destino)
-        tripDao.insert(trip)
-            .addOnSuccessListener {
-                _msg.value = "Persistência realizada com sucesso."
-            }
-            .addOnFailureListener {
-                _msg.value = "Problemas ao persistir os dados."
-            }
-        _status.value = true
-    }
-
-    private fun getFileReference(uid: String): StorageReference {
-        return FirebaseStorage.getInstance().reference.child("carros/$uid")
-    }
-
     fun vehicleSelecionadoo(placa:String){
         this.placa = placa
     }
 
     fun insertTrip(
-        nomeViagem: String, partida: String, destino: String, distancia: String
+        nomeViagem: String,
+        partida: String,
+        destino: String,
+        distancia: String,
+        combustivel: String
     ) {
         //TODO: Token do Usuario
         val usuarioLogado = FirebaseAuth.getInstance().currentUser!!
@@ -120,9 +110,9 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
             .collection("carros")
             .document(placa!!)
 
+        val carbono = carbonoEmitido(combustivel,distancia)
 
-
-        val trip = Trip( nomeViagem,partida, destino, distancia, vehicle)
+        val trip = Trip( nomeViagem,partida, destino, distancia,carbono )
         tripDao.insert(trip)
             .addOnSuccessListener {
                 _status.value = true
@@ -131,16 +121,6 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
             .addOnFailureListener {
                 _msg.value = "${it.message}"
             }
-    }
-
-    private fun carroSelecionado (placa: String): StorageReference {
-        var firebase = FirebaseStorage.getInstance()
-
-        val firebaseReference = firebase.reference
-
-        val fileReference = firebaseReference.child("carros/$placa")
-
-        return fileReference
     }
 
     private fun carbonoEmitido(combustivel: String, distancia: String):String{
