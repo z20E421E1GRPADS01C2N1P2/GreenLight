@@ -17,6 +17,9 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys.AES256_GCM_SPEC
+import androidx.security.crypto.MasterKeys.getOrCreate
 import br.com.greenlight.R
 import br.com.greenlight.database.dao.TripDaoFirestore
 import com.google.android.material.snackbar.Snackbar
@@ -118,11 +121,24 @@ class TripFragment() : Fragment() {
 
         }
 
+
+
         btnBuscar.setOnClickListener {
+
+            val masterKeyAlias = getOrCreate(AES256_GCM_SPEC)
+
             val nomeViagem = edtTextNomeViagem.text.toString()
-            val destino = editTextDestino.text.toString()
-            val partida = editTextPartida.text.toString()
-            val distancia = textViewDistancia.text.toString()
+            val destino    = editTextDestino.text.toString()
+            val partida    = editTextPartida.text.toString()
+            val distancia  = textViewDistancia.text.toString()
+            val cryptoDestino = EncryptedSharedPreferences.create(destino,
+                masterKeyAlias,requireContext(),EncryptedSharedPreferences
+                    .PrefKeyEncryptionScheme.AES256_SIV,
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM)
+            val cryptoPartida =   EncryptedSharedPreferences.create(partida,
+                masterKeyAlias,requireContext(),EncryptedSharedPreferences
+                    .PrefKeyEncryptionScheme.AES256_SIV,
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM)
 
             when {
                 nomeViagem.isNullOrBlank() -> Snackbar.make(
@@ -151,8 +167,10 @@ class TripFragment() : Fragment() {
                 ).show()
                 else -> viewModel.insertTrip(
                     nomeViagem,
-                    partida,
                     destino,
+                    partida,
+                    //cryptoPartida.toString(),
+                   // cryptoDestino.toString(),
                     distancia
                 )
             }
