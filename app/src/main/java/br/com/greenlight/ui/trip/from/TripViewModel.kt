@@ -23,7 +23,6 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
     private val app = application
     private val _status = MutableLiveData<Boolean>()
     val status: LiveData<Boolean> = _status
-
     var destino = listOf<String?>()
     var origem = listOf<String?>()
 
@@ -36,13 +35,9 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
     private val _distancia = MutableLiveData<String?>()
     val distancia: MutableLiveData<String?> =_distancia
 
-    private val _combustivelTrip = MutableLiveData<MutableList<String?>>()
-    val combustivelTrip : MutableLiveData<MutableList<String?>> = _combustivelTrip
-
-    private val _spinner = MutableLiveData<List<String>>()
-    private val spinner: LiveData<List<String>> = _spinner
-
     private var placa: String? = null
+
+    private var uid: String? = null
 
     init {
         _status.value = false
@@ -60,13 +55,6 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
 
 
     }
-    // Implementando Spinner
-
-    fun spinnerItems(): LiveData<List<String>> {
-        _spinner.value = listOf("Gasolina", "Álcool", "Diesel")
-        return spinner
-    }
-
     fun obterDistancia () {
         viewModelScope.launch {
             try {
@@ -77,7 +65,7 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
                     Log.i("distance", tripDetail.toString())
                     if(!tripDetail.rows.isNullOrEmpty())
                     {
-                        _distancia.value = tripDetail.rows[0].elements[0]
+                        _distancia.value = tripDetail!!.rows[0].elements[0]
                             .distance.text.toString()
                         Log.i("distance", "${tripDetail.rows[0]}")
                     }else{
@@ -97,16 +85,29 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
         }
     }
 
+    fun store(partida: String, destino: String) {
+        _status.value = false
+        val trip = Trip(partida, destino)
+        tripDao.insert(trip)
+            .addOnSuccessListener {
+                _msg.value = "Persistência realizada com sucesso."
+            }
+            .addOnFailureListener {
+                _msg.value = "Problemas ao persistir os dados."
+            }
+        _status.value = true
+    }
+
+    private fun getFileReference(uid: String): StorageReference {
+        return FirebaseStorage.getInstance().reference.child("carros/$uid")
+    }
+
     fun vehicleSelecionadoo(placa:String){
         this.placa = placa
     }
 
     fun insertTrip(
-        nomeViagem: String,
-        partida: String,
-        destino: String,
-        distancia: String,
-        combustivel: String
+        nomeViagem: String, partida: String, destino: String, distancia: String
     ) {
         //TODO: Token do Usuario
         val usuarioLogado = FirebaseAuth.getInstance().currentUser!!
@@ -120,10 +121,8 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
             .document(placa!!)
 
 
-        val carbono = carbonoEmitido(combustivel,distancia)
 
-        val trip = Trip( nomeViagem,partida, destino, distancia, vehicle,
-            carbono,combustivel)
+        val trip = Trip( nomeViagem,partida, destino, distancia, vehicle)
         tripDao.insert(trip)
             .addOnSuccessListener {
                 _status.value = true
@@ -145,25 +144,19 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
     }
 
     private fun carbonoEmitido(combustivel: String, distancia: String):String{
-        val km: Int = distancia.toInt()
+        val distancia = distancia.toInt()
         var carbonoEmitido = 0
 
         if (combustivel == "Disel")
-            carbonoEmitido = km * 280
+            carbonoEmitido = distancia * 280
         if (combustivel == "Gasolina")
-            carbonoEmitido = km * 217
+            carbonoEmitido = distancia * 217
         if (combustivel == "Álcool")
-            carbonoEmitido = km * 66
+            carbonoEmitido = distancia * 66
 
         return carbonoEmitido.toString()
 
     }
-
-
 }
-
-
-
-
 
 

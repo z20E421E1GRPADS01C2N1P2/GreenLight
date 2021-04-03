@@ -23,7 +23,7 @@ class TripRecyclerAdapter(
         val textPartida: TextView = itemView.textViewTripPartida
         val textDestino: TextView = itemView.textViewTripDestino
         val textDistancia: TextView = itemView.textViewTripDistancia
-        val textCarbono : TextView = itemView.textViewCarbonoEmitido
+        val textVehicle: TextView = itemView.textViewTripVehicle
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TripRecyclerAdapter
@@ -44,7 +44,7 @@ class TripRecyclerAdapter(
         holder.textPartida.text = trip.partida
         holder.textDestino.text = trip.destino
         holder.textDistancia.text = trip.distancia.toString()
-        holder.textCarbono.text = trip.carbonoEmitido
+        holder.textVehicle.text = trip.vehicle?.get().toString()
 
 
         holder.itemView.btnDeleteTrip.setOnClickListener {
