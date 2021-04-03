@@ -44,22 +44,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/allerta"
         android:text="@string/destino"
         app:layout_constraintStart_toEndOf="@+id/textView28"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTripNomeViagem" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTripPartida" />
 
     <TextView
         android:id="@+id/textView28"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/allerta"
         android:text="@string/destino_viagem"
-        app:layout_constraintStart_toEndOf="@+id/textViewTripPartida"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTripNomeViagem" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
     <TextView
         android:id="@+id/textViewTripDistancia"
@@ -83,17 +83,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewTripNomeViagem" />
 
     <TextView
-        android:id="@+id/textViewTripVehicle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/allerta"
-        android:text="@string/veiculo"
-        app:layout_constraintStart_toEndOf="@+id/textView33"
-        app:layout_constraintTop_toBottomOf="@+id/textView25" />
-
-    <TextView
         android:id="@+id/textView32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -103,17 +92,6 @@
         android:text="@string/co2emitido"
         app:layout_constraintEnd_toStartOf="@+id/textViewCarbonoEmitido"
         app:layout_constraintTop_toBottomOf="@+id/textViewTripDistancia" />
-
-    <TextView
-        android:id="@+id/textView33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/allerta"
-        android:text="@string/ve_culo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
     <TextView
         android:id="@+id/textViewCO2Emitido"
@@ -151,7 +129,7 @@
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintTop_toBottomOf="@+id/textView33"
+        app:layout_constraintTop_toBottomOf="@+id/textView32"
         tools:layout_editor_absoluteX="218dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

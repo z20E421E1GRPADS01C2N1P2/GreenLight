@@ -10,7 +10,9 @@ import br.com.greenlight.api.DistanceApi
 import br.com.greenlight.database.dao.TripDao
 import br.com.greenlight.database.dao.VehicleDaoFirestore
 import br.com.greenlight.model.Trip
+import br.com.greenlight.model.Vehicle
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -36,9 +38,14 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
     private val _distancia = MutableLiveData<String?>()
     val distancia: MutableLiveData<String?> =_distancia
 
+    private val _combustivelTrip = MutableLiveData<MutableList<String?>>()
+    val combustivelTrip : MutableLiveData<MutableList<String?>> = _combustivelTrip
+
     private var placa: String? = null
 
     private var uid: String? = null
+
+    private var carroGas :String? = null
 
     init {
         _status.value = false
@@ -121,9 +128,23 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
             .collection("carros")
             .document(placa!!)
 
-        val combustivel = "Disel"
+        val gas = FirebaseFirestore
+            .getInstance()
+            .collection("carros")
+            .document(placa!!)
+            .get()
+            .addOnSuccessListener {
+                _combustivelTrip.value = mutableListOf()
+                    _combustivelTrip.value!!.add(
+                        it.getString("tipoCombustivel")
+                    )
+                }
+
+
+
+
         val km = distancia
-        val carbono = carbonoEmitido(combustivel,km)
+        val carbono = carbonoEmitido("gas",km)
 
         val trip = Trip( nomeViagem,partida, destino, distancia, vehicle, carbono)
         tripDao.insert(trip)
@@ -160,6 +181,12 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
         return carbonoEmitido.toString()
 
     }
+
+
 }
+
+
+
+
 
 

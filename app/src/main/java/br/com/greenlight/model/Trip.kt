@@ -12,12 +12,12 @@ class Trip(
             //var usuario:User?    = null,
             //var Carro: Vehicle?  = null,
     var vehicle: DocumentReference? = null,
-    var carbonoEmitido: String? = null
+    var carbonoEmitido: String? = null,
+    val tipoCombustivel: String? = null,
     //var co2Emitido: String? = null
 
 
 ) {
 
-    override fun toString(): String = "$nomeViagem           $distancia"
 }
 
