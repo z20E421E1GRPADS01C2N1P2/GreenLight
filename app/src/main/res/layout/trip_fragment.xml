@@ -13,6 +13,36 @@
         tools:context=".ui.trip.from.TripFragment">
 
         <TextView
+            android:id="@+id/textView26"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/allerta"
+            android:text="@string/tipo_de_combust_vel"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerVehicle" />
+
+        <Spinner
+            android:id="@+id/spinnerOptionCombustivel2"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:dropDownWidth="wrap_content"
+            android:fontFamily="@font/allerta"
+            android:spinnerMode="dialog"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+        <TextView
             android:id="@+id/textViewDistancia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,14 +132,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="@string/cadastrar_viagem"
             android:fontFamily="@font/allerta"
+            android:text="@string/cadastrar_viagem"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerVehicle" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerOptionCombustivel2" />
 
         <Spinner
             android:id="@+id/spinnerVehicle"
