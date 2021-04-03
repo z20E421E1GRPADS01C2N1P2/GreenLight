@@ -20,7 +20,6 @@ class VehicleRecyclerAdapter(
         : RecyclerView.ViewHolder(itemView) {
         val textModelo: TextView = itemView.textViewVehicleModelo
         val textMarca: TextView = itemView.textViewVehicleMarca
-        val textCombustivel: TextView = itemView.textViewVehicleCombustivel
         val textAno: TextView = itemView.textViewVehicleAno
         val textPlaca: TextView = itemView.textViewVehiclePlaca
     }
