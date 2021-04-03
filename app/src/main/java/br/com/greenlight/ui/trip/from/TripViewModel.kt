@@ -124,15 +124,15 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
     }
 
     private fun carbonoEmitido(combustivel: String, distancia: String):String{
-        val distancia = distancia.toInt()
-        var carbonoEmitido = 0
+        val distancia = distancia.toFloat()
+        var carbonoEmitido: Float = 0.0f
 
         if (combustivel == "Disel")
-            carbonoEmitido = distancia * 280
+            carbonoEmitido  = distancia * 280.0f
         if (combustivel == "Gasolina")
-            carbonoEmitido = distancia * 217
+            carbonoEmitido = distancia * 217.0f
         if (combustivel == "Álcool")
-            carbonoEmitido = distancia * 66
+            carbonoEmitido = distancia * 66.0f
 
         return carbonoEmitido.toString()
 
