@@ -16,8 +16,8 @@ class VehicleViewModel (
 
     private val app = application
 
-    private val _spinner = MutableLiveData<List<String>>()
-    private val spinner: LiveData<List<String>> = _spinner
+//    private val _spinner = MutableLiveData<List<String>>()
+//    private val spinner: LiveData<List<String>> = _spinner
 
     private val _status = MutableLiveData<Boolean>()
     val status: LiveData<Boolean> = _status
@@ -25,45 +25,22 @@ class VehicleViewModel (
     private val _msg = MutableLiveData<String?>()
     val msg: MutableLiveData<String?> = _msg
 
-    private var combustivel: String? = null
-
     init {
         _status.value = false
         _msg.value = null
     }
 
-    // Implementando Spinner
-    fun spinnerItems(): LiveData<List<String>> {
-        _spinner.value = listOf("Gasolina", "Álcool", "Diesel")
-        return spinner
-    }
-
-    fun store(marca: String, modelo: String, placa: String){
-        _status.value = false
-        val vehicle = Vehicle(marca, modelo, placa)
-        vehicleDao.insert(vehicle)
-            .addOnSuccessListener {
-                _msg.value = "Persistência realizada com sucesso."
-            }
-            .addOnFailureListener {
-                _msg.value = "Problemas ao persistir os dados."
-            }
-        _status.value = true
-    }
-
-    private fun getFileReference(placa: String): StorageReference {
-        return FirebaseStorage.getInstance().reference.child("carros/$placa")
-    }
-
-    fun selecionarCombustivel(placa: String){
-        this.combustivel = placa
-    }
+//    // Implementando Spinner
+//    fun spinnerItems(): LiveData<List<String>> {
+//        _spinner.value = listOf("Gasolina", "Álcool", "Diesel")
+//        return spinner
+//    }
 
     fun insertVehicle(
-        modelo: String, marca: String, combustivel: String,
+        modelo: String, marca: String,
         ano: String, placa: String){
 
-        val vehicle = Vehicle(modelo,marca,combustivel,ano, placa)
+        val vehicle = Vehicle(modelo,marca,ano, placa)
         vehicleDao.insert(vehicle)
             .addOnSuccessListener {
                 _status.value = true

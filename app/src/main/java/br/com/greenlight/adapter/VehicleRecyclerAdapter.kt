@@ -39,7 +39,6 @@ class VehicleRecyclerAdapter(
         val vehcile = vehicles[position]
         holder.textModelo.text = vehcile.modelo
         holder.textMarca.text = vehcile.marca
-        holder.textCombustivel.text = vehcile.tipoCombustivel
         holder.textAno.text = vehcile.ano
         holder.textPlaca.text = vehcile.placa
 

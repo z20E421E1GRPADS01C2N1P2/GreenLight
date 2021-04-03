@@ -40,14 +40,14 @@ class VehicleFragment : Fragment() {
                 findNavController().popBackStack()
         })
 
-        viewModel.spinnerItems().observe(viewLifecycleOwner, { spinnerData ->
-            val spinnerAdapter = ArrayAdapter(
-                requireContext(),
-                android.R.layout.simple_spinner_item,
-                spinnerData
-            )
-            spinnerOptionCombustivel.adapter = spinnerAdapter
-        })
+//        viewModel.spinnerItems().observe(viewLifecycleOwner, { spinnerData ->
+////            val spinnerAdapter = ArrayAdapter(
+////                requireContext(),
+////                android.R.layout.simple_spinner_item,
+////                spinnerData
+////            )
+////            spinnerOptionCombustivel.adapter = spinnerAdapter
+////        })
 
         return inflater.inflate(R.layout.vehicle_fragment, container, false)
     }
@@ -59,7 +59,7 @@ class VehicleFragment : Fragment() {
             val marca = edtTextMarca.text.toString()
             val ano = editTextAno.text.toString()
             val placa = edtTextPlaca.text.toString()
-            val combustivel = spinnerOptionCombustivel.selectedItem.toString()
+           // val combustivel = spinnerOptionCombustivel.selectedItem.toString()
 
             when {
                 modelo.isNullOrBlank() -> Snackbar.make(
@@ -89,7 +89,7 @@ class VehicleFragment : Fragment() {
                 else -> viewModel.insertVehicle(
                     modelo,
                     marca,
-                    combustivel,
+                   // combustivel,
                     ano,
                     placa
                 )

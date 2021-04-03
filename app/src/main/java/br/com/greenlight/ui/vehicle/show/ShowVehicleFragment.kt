@@ -35,7 +35,6 @@ class ShowVehicleFragment : Fragment() {
     private fun preencherInformacaoVehicle(vehicle: Vehicle) {
         txtModelo.text = vehicle.modelo
         txtMarca.text = vehicle.marca
-        txtCombustivel.text = vehicle.tipoCombustivel
         txtAno.text = vehicle.ano
         txtPlaca.text = vehicle.placa
     }

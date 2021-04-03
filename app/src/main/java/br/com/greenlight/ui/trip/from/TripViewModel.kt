@@ -10,14 +10,11 @@ import br.com.greenlight.api.DistanceApi
 import br.com.greenlight.database.dao.TripDao
 import br.com.greenlight.database.dao.VehicleDaoFirestore
 import br.com.greenlight.model.Trip
-import br.com.greenlight.model.Vehicle
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.launch
-import java.math.BigDecimal
 
 class TripViewModel(private val tripDao: TripDao, application: Application,
                     ) :
@@ -26,6 +23,7 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
     private val app = application
     private val _status = MutableLiveData<Boolean>()
     val status: LiveData<Boolean> = _status
+
     var destino = listOf<String?>()
     var origem = listOf<String?>()
 
@@ -41,11 +39,10 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
     private val _combustivelTrip = MutableLiveData<MutableList<String?>>()
     val combustivelTrip : MutableLiveData<MutableList<String?>> = _combustivelTrip
 
+    private val _spinner = MutableLiveData<List<String>>()
+    private val spinner: LiveData<List<String>> = _spinner
+
     private var placa: String? = null
-
-    private var uid: String? = null
-
-    private var carroGas :String? = null
 
     init {
         _status.value = false
@@ -63,6 +60,13 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
 
 
     }
+    // Implementando Spinner
+
+    fun spinnerItems(): LiveData<List<String>> {
+        _spinner.value = listOf("Gasolina", "Álcool", "Diesel")
+        return spinner
+    }
+
     fun obterDistancia () {
         viewModelScope.launch {
             try {
@@ -93,29 +97,16 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
         }
     }
 
-    fun store(partida: String, destino: String) {
-        _status.value = false
-        val trip = Trip(partida, destino)
-        tripDao.insert(trip)
-            .addOnSuccessListener {
-                _msg.value = "Persistência realizada com sucesso."
-            }
-            .addOnFailureListener {
-                _msg.value = "Problemas ao persistir os dados."
-            }
-        _status.value = true
-    }
-
-    private fun getFileReference(uid: String): StorageReference {
-        return FirebaseStorage.getInstance().reference.child("carros/$uid")
-    }
-
     fun vehicleSelecionadoo(placa:String){
         this.placa = placa
     }
 
     fun insertTrip(
-        nomeViagem: String, partida: String, destino: String, distancia: String
+        nomeViagem: String,
+        partida: String,
+        destino: String,
+        distancia: String,
+        combustivel: String
     ) {
         //TODO: Token do Usuario
         val usuarioLogado = FirebaseAuth.getInstance().currentUser!!
@@ -128,25 +119,11 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
             .collection("carros")
             .document(placa!!)
 
-        val gas = FirebaseFirestore
-            .getInstance()
-            .collection("carros")
-            .document(placa!!)
-            .get()
-            .addOnSuccessListener {
-                _combustivelTrip.value = mutableListOf()
-                    _combustivelTrip.value!!.add(
-                        it.getString("tipoCombustivel")
-                    )
-                }
 
+        val carbono = carbonoEmitido(combustivel,distancia)
 
-
-
-        val km = distancia
-        val carbono = carbonoEmitido("gas",km)
-
-        val trip = Trip( nomeViagem,partida, destino, distancia, vehicle, carbono)
+        val trip = Trip( nomeViagem,partida, destino, distancia, vehicle,
+            carbono,combustivel)
         tripDao.insert(trip)
             .addOnSuccessListener {
                 _status.value = true
