@@ -32,17 +32,11 @@ class ListTripFragment : Fragment() {
         viewModel = ViewModelProvider(this, listTrips )
             .get(ListTripViewModel::class.java)
 
-//        viewModel.status.observe(viewLifecycleOwner, Observer { status ->
-//            if (status)
-//                findNavController().popBackStack()
-//        })
-
         viewModel.trips.observe(viewLifecycleOwner){
             setupListViewTrips(it)
         }
 
         viewModel.atualizarQuantidade()
-
 
         return inflater.inflate(R.layout.list_trip_fragment, container, false)
     }
@@ -56,6 +50,9 @@ class ListTripFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        fabTripForm.alpha = 0.55f
+
         fabTripForm.setOnClickListener {
             findNavController().navigate(R.id.action_listTripFragment2_to_vehicleTripFragment)
         }
