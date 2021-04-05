@@ -15,6 +15,7 @@ import br.com.greenlight.database.dao.TripDaoFirestore
 import br.com.greenlight.model.Trip
 import br.com.greenlight.model.`object`.TripUtil
 import br.com.greenlight.model.`object`.VehicleUtil
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.list_trip_fragment.*
 
 
@@ -35,6 +36,12 @@ class ListTripFragment : Fragment() {
         viewModel.trips.observe(viewLifecycleOwner){
             setupListViewTrips(it)
         }
+
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val firebaseUser = firebaseAuth.currentUser
+
+        if (firebaseUser == null)
+            findNavController().popBackStack()
 
         viewModel.atualizarQuantidade()
 
