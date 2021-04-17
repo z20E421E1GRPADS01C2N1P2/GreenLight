@@ -30,4 +30,6 @@ Projeto Base
     além de buscar conscientizá-lo sobre o malefício da emissão de gás carbônico a nível
     prejudicial, na atmosfera.</p>
     
-## Project Setup
+## Project
+<p>A aplicação foi desenvolvida no Android Studio e foi utilizada a linguagem Kotlin.</p>
+<p>Para a obtenção da distância entre a origem e o destino, foi utilizada a API do Google Maps.</p>
