@@ -10,7 +10,6 @@ import br.com.greenlight.model.Trip
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.list_trip_recycler.view.*
-import kotlinx.android.synthetic.main.trip_fragment.view.*
 
 class TripRecyclerAdapter(
     private val trips: List<Trip>,

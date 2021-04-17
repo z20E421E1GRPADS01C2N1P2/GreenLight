@@ -16,7 +16,7 @@ class ListTripViewModel(private val tripDao: TripDao) : ViewModel() {
 
 
     fun atualizarQuantidade() {
-        tripDao.all() // task<>
+        tripDao.all()
             .addSnapshotListener { snapshot, error ->
                 if (error != null)
                     Log.i("LstCarroVMSnapshotError", "${error.message}")

@@ -8,5 +8,4 @@ class Vehicle(
     val ano: String? = null,
     @DocumentId
     val placa: String? = null
-) {
-}
+)

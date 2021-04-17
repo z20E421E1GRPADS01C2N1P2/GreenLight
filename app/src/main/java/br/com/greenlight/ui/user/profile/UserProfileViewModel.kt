@@ -74,18 +74,6 @@ Application) : AndroidViewModel(application) {
         _profilepicture.value = uri
     }
 
-//    fun uploadProfilePicture(uid: String) {
-//        val fileReference = getFileReference(uid)
-//        val task = fileReference.putFile(_profilepicture.value!!)
-//        task
-//            .addOnSuccessListener {
-//                _msg.value = "Imagem Carregada com sucesso."
-//            }
-//            .addOnFailureListener {
-//                _msg.value = "Falhou: ${it.message}"
-//            }
-//    }
-
     fun downloadProfilePicture(uid: String) {
         val file = File.createTempFile("profile", ".png")
         val fileReference = getFileReference(uid)

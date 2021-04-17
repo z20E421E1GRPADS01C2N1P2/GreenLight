@@ -35,20 +35,6 @@ class LoginFragment : Fragment() {
         if (firebaseUser != null)
             findNavController().popBackStack()
 
-
-//        navView.menu.findItem(R.id.loginFragment).setOnMenuItemClickListener {
-//
-//            if (firebaseUser != null) {
-//                it.isVisible = false
-//                navView.menu.findItem(R.id.logoutFragment).isVisible = true
-//            } else {
-//                it.isVisible = true
-//                navView.menu.findItem(R.id.logoutFragment).isVisible = false
-//            }
-//
-//            true
-//        }
-
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         loginViewModel.status.observe(viewLifecycleOwner) {

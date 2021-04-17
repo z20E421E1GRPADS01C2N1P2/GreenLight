@@ -59,7 +59,7 @@ class VehicleFragment : Fragment() {
             val marca = edtTextMarca.text.toString()
             val ano = editTextAno.text.toString()
             val placa = edtTextPlaca.text.toString()
-           // val combustivel = spinnerOptionCombustivel.selectedItem.toString()
+            // val combustivel = spinnerOptionCombustivel.selectedItem.toString()
 
             when {
                 modelo.isNullOrBlank() -> Snackbar.make(
@@ -89,7 +89,7 @@ class VehicleFragment : Fragment() {
                 else -> viewModel.insertVehicle(
                     modelo,
                     marca,
-                   // combustivel,
+                    // combustivel,
                     ano,
                     placa
                 )
