@@ -8,7 +8,7 @@ Projeto Base
 <ul>
     <li>Antônio Isaac Lobo</li>
     <li>Lucas Samel</li>
-    <li>Philipop Rodrigues</li>
+    <li>Philippo Rodrigues</li>
 </ul>
 
 ### Assunto
@@ -17,17 +17,17 @@ Projeto Base
  </ul>
 
 ### Cenário
-<p>Atualmente, vários países estão adotando medidas ambientais em prol do uso de
-    energia limpa, devido à consideração dos riscos do que o aquecimento global
-    pode fazer com a sociedade mundial. Esse movimento se iniciou com mais força
-    em 2015, quando vários países elaboraram uma estratégia para conter a emissão
-    de gás carbônico na atmosfera, por meio do Acordo de Paris​.</p>
+<p>Atualmente, vários países estão adotando medidas ambientais em prol do uso de
+    energia limpa, devido à consideração dos riscos do que o aquecimento global
+    pode fazer com a sociedade mundial. Esse movimento se iniciou com mais força
+    em 2015, quando vários países elaboraram uma estratégia para conter a emissão
+    de gás carbônico na atmosfera, por meio do Acordo de Paris​.</p>
 
-<p>O aplicativo Green Light tem o propósito de ajudar na transição de uma sociedade
-    poluente para um ambiente em que haja redução significativa da emissão de gás
-    carbônico, por meio do auxílio ao usuário na aquisição de um veículo elétrico,
-    além de trazê-lo para um cenário com conteúdo informativo e educativo sobre esse tema,
-    além de buscar conscientizá-lo sobre o malefício da emissão de gás carbônico a nível
+<p>O aplicativo Green Light tem o propósito de ajudar na transição de uma sociedade
+    poluente para um ambiente em que haja redução significativa da emissão de gás
+    carbônico, por meio do auxílio ao usuário na aquisição de um veículo elétrico,
+    além de trazê-lo para um cenário com conteúdo informativo e educativo sobre esse tema,
+    além de buscar conscientizá-lo sobre o malefício da emissão de gás carbônico a nível
     prejudicial, na atmosfera.</p>
     
 ## Project Setup
