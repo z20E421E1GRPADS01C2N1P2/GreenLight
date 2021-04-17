@@ -104,7 +104,6 @@ class TripViewModel(
         distancia: String,
         combustivel: String
     ) {
-        //TODO: Token do Usuario
         val usuarioLogado = FirebaseAuth.getInstance().currentUser!!
         // val tokenUsuario = usuarioLogado.getIdToken()
 
@@ -128,16 +127,28 @@ class TripViewModel(
             }
     }
 
+//    private fun carbonoEmitido(combustivel: String, distancia: String) {
+//        val distanciaFinal = distancia.toFloat()
+//        var carbonoEmitido: Float = 0.0f
+//
+//        if (combustivel == "Diesel")
+//            carbonoEmitido = distanciaFinal * 280.0f
+//        if (combustivel == "Gasolina")
+//            carbonoEmitido = distanciaFinal * 217.0f
+//        if (combustivel == "Álcool")
+//            carbonoEmitido = distanciaFinal * 66.0f
+//    }
+
     private fun carbonoEmitido(combustivel: String, distancia: String): String {
-        val distanciaFinal = distancia.toFloat()
+        val distancia = distancia.toFloat()
         var carbonoEmitido: Float = 0.0f
 
-        if (combustivel == "Diesel")
-            carbonoEmitido = distanciaFinal * 280.0f
+        if (combustivel == "Disel")
+            carbonoEmitido = distancia * 280.0f
         if (combustivel == "Gasolina")
-            carbonoEmitido = distanciaFinal * 217.0f
+            carbonoEmitido = distancia * 217.0f
         if (combustivel == "Álcool")
-            carbonoEmitido = distanciaFinal * 66.0f
+            carbonoEmitido = distancia * 66.0f
 
         return carbonoEmitido.toString()
     }
