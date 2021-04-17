@@ -42,7 +42,7 @@ class LocationActivity : AppCompatActivity(),
             == PackageManager.PERMISSION_GRANTED) {
             map.isMyLocationEnabled = true
         } else {
-            // Permission to access the location is missing. Show rationale and request permission
+            // Permission to access the location is missing.
             requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE,
                 Manifest.permission.ACCESS_FINE_LOCATION, true
             )
@@ -86,11 +86,6 @@ class LocationActivity : AppCompatActivity(),
     }
 
     companion object {
-        /**
-         * Request code for location permission request.
-         *
-         * @see .onRequestPermissionsResult
-         */
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 

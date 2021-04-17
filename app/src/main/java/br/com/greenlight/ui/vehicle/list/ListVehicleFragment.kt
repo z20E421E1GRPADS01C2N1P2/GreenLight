@@ -13,6 +13,7 @@ import br.com.greenlight.adapter.VehicleRecyclerAdapter
 import br.com.greenlight.database.dao.VehicleDaoFirestore
 import br.com.greenlight.model.Vehicle
 import br.com.greenlight.model.`object`.VehicleUtil
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.list_vehicle_fragment.*
 
 class ListVehicleFragment : Fragment() {
@@ -31,10 +32,11 @@ class ListVehicleFragment : Fragment() {
         viewModel = ViewModelProvider(this, listVehicles)
             .get(ListVehicleViewModel::class.java)
 
-//        viewModel.status.observe(viewLifecycleOwner, Observer { status ->
-//            if (status)
-//                findNavController().popBackStack()
-//        })
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val firebaseUser = firebaseAuth.currentUser
+
+        if (firebaseUser == null)
+            findNavController().popBackStack()
 
         viewModel.vehicle.observe(viewLifecycleOwner){
             setupListViewVehicles(it)

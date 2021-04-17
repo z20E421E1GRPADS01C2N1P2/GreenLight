@@ -10,4 +10,7 @@
     <color name="dark_green">#122a2e</color>
     <color name="mustard">#e9a02a</color>
     <color name="teal">#008080</color>
+    <color name="colorTextBox">#edeeed</color>
+    <color name="colorViewLine">#e0e1e0</color>
+    <color name="lightGrey">#F1F1F1</color>
 </resources>

@@ -15,6 +15,7 @@ import br.com.greenlight.database.dao.TripDaoFirestore
 import br.com.greenlight.model.Trip
 import br.com.greenlight.model.`object`.TripUtil
 import br.com.greenlight.model.`object`.VehicleUtil
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.list_trip_fragment.*
 
 
@@ -32,17 +33,17 @@ class ListTripFragment : Fragment() {
         viewModel = ViewModelProvider(this, listTrips )
             .get(ListTripViewModel::class.java)
 
-//        viewModel.status.observe(viewLifecycleOwner, Observer { status ->
-//            if (status)
-//                findNavController().popBackStack()
-//        })
-
         viewModel.trips.observe(viewLifecycleOwner){
             setupListViewTrips(it)
         }
 
-        viewModel.atualizarQuantidade()
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val firebaseUser = firebaseAuth.currentUser
 
+        if (firebaseUser == null)
+            findNavController().popBackStack()
+
+        viewModel.atualizarQuantidade()
 
         return inflater.inflate(R.layout.list_trip_fragment, container, false)
     }
@@ -56,6 +57,9 @@ class ListTripFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        fabTripForm.alpha = 0.55f
+
         fabTripForm.setOnClickListener {
             findNavController().navigate(R.id.action_listTripFragment2_to_vehicleTripFragment)
         }

@@ -28,21 +28,4 @@ class DashboardFragment : Fragment() {
             findNavController().navigate(R.id.locationActivity)
         }
     }
-
-//    override fun onContextItemSelected(item: MenuItem): Boolean {
-
-//        val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
-//        return when (item.itemId) {
-//            R.id.logoutFragment -> {
-//                val firebaseAuth = FirebaseAuth.getInstance()
-//                var currentUser = firebaseAuth.currentUser
-//                firebaseAuth.signOut()
-//                currentUser = null
-//                findNavController().navigate(R.id.dashboardFragment)
-                //logout()
-//                true
-//            }
-//            else -> super.onContextItemSelected(item)
-//        }
-//    }
 }

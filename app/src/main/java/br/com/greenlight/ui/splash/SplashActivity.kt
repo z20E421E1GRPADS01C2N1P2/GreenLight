@@ -11,9 +11,6 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var splashViewModel: SplashScreenViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-//        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 

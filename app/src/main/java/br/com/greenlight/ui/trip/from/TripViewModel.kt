@@ -1,6 +1,7 @@
 package br.com.greenlight.ui.trip.from
 
 import android.app.Application
+import android.icu.text.DecimalFormat
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -13,9 +14,13 @@ import br.com.greenlight.model.Trip
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
+import java.text.NumberFormat
+import java.util.*
+import kotlin.math.roundToInt
 
-class TripViewModel(private val tripDao: TripDao, application: Application,
-                    ) :
+class TripViewModel(
+    private val tripDao: TripDao, application: Application,
+) :
     AndroidViewModel(application) {
 
     private val _status = MutableLiveData<Boolean>()
@@ -31,7 +36,7 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
     val carros: LiveData<MutableList<String>> = _carros
 
     private val _distancia = MutableLiveData<String?>()
-    val distancia: MutableLiveData<String?> =_distancia
+    val distancia: MutableLiveData<String?> = _distancia
 
     private var placa: String? = null
 
@@ -58,21 +63,21 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
         return spinner
     }
 
-    fun obterDistancia () {
+    fun obterDistancia() {
         viewModelScope.launch {
             try {
                 val distanceService = DistanceApi.getTripService()
                 if (!destino.isNullOrEmpty() && !origem.isNullOrEmpty()) {
                     Log.i("distance", "entrei no if")
-                    val tripDetail = distanceService.obterDistance(origem, destino)
+                    val tripDetail =
+                        distanceService.obterDistance(origem, destino)
                     Log.i("distance", tripDetail.toString())
-                    if(!tripDetail.rows.isNullOrEmpty())
-                    {
+                    if (!tripDetail.rows.isNullOrEmpty()) {
                         _distancia.value = tripDetail!!.rows[0].elements[0]
                             .distance.text.toString()
                         Log.i("distance", "${tripDetail.rows[0]}")
-                    }else{
-                        Log.i("distance","Rows é nula")
+                    } else {
+                        Log.i("distance", "Rows é nula")
                     }
                     //_distancia.value = tripDetail!!.rows[0].elements[0].distance.value.toString()
                     //_distancia.value = distanceService.obterDistance(origem,destino)
@@ -82,13 +87,13 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
                 } else {
                     _msg.value = "Não foi possível calcular a distância."
                 }
-            } catch (e:Exception){
+            } catch (e: Exception) {
                 _msg.value = e.message
             }
         }
     }
 
-    fun vehicleSelecionadoo(placa:String){
+    fun vehicleSelecionadoo(placa: String) {
         this.placa = placa
     }
 
@@ -99,20 +104,19 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
         distancia: String,
         combustivel: String
     ) {
-        //TODO: Token do Usuario
         val usuarioLogado = FirebaseAuth.getInstance().currentUser!!
-       // val tokenUsuario = usuarioLogado.getIdToken()
+        // val tokenUsuario = usuarioLogado.getIdToken()
 
-        Log.i("Usuario Corrente ","$usuarioLogado")
+        Log.i("Usuario Corrente ", "$usuarioLogado")
 
         val vehicle = FirebaseFirestore
             .getInstance()
             .collection("carros")
             .document(placa!!)
 
-        val carbono = carbonoEmitido(combustivel,distancia)
+        val carbono = carbonoEmitido(combustivel, distancia)
 
-        val trip = Trip( nomeViagem,partida, destino, distancia,carbono )
+        val trip = Trip(nomeViagem, partida, destino, distancia, carbono)
         tripDao.insert(trip)
             .addOnSuccessListener {
                 _status.value = true
@@ -123,19 +127,30 @@ class TripViewModel(private val tripDao: TripDao, application: Application,
             }
     }
 
-    private fun carbonoEmitido(combustivel: String, distancia: String):String{
+//    private fun carbonoEmitido(combustivel: String, distancia: String) {
+//        val distanciaFinal = distancia.toFloat()
+//        var carbonoEmitido: Float = 0.0f
+//
+//        if (combustivel == "Diesel")
+//            carbonoEmitido = distanciaFinal * 280.0f
+//        if (combustivel == "Gasolina")
+//            carbonoEmitido = distanciaFinal * 217.0f
+//        if (combustivel == "Álcool")
+//            carbonoEmitido = distanciaFinal * 66.0f
+//    }
+
+    private fun carbonoEmitido(combustivel: String, distancia: String): String {
         val distancia = distancia.toFloat()
         var carbonoEmitido: Float = 0.0f
 
         if (combustivel == "Disel")
-            carbonoEmitido  = distancia * 280.0f
+            carbonoEmitido = distancia * 280.0f
         if (combustivel == "Gasolina")
             carbonoEmitido = distancia * 217.0f
         if (combustivel == "Álcool")
             carbonoEmitido = distancia * 66.0f
 
         return carbonoEmitido.toString()
-
     }
 }
 

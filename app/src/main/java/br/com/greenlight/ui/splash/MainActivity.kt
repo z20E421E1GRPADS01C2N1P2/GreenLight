@@ -58,11 +58,11 @@ class MainActivity : AppCompatActivity() {
         )
         NavigationUI.setupWithNavController(navView, navController)
 
-        navView.menu.findItem(R.id.logoutFragment).setOnMenuItemClickListener {
-
-            it.isVisible = false
-            true
-        }
+//        navView.menu.findItem(R.id.logoutFragment).setOnMenuItemClickListener {
+//
+//            it.isVisible = false
+//            true
+//        }
 
         //Logout
         navView.menu.findItem(R.id.logoutFragment).setOnMenuItemClickListener {
@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity() {
             it.isVisible = false
             navController.navigate(R.id.dashboardFragment)
             drawerLayout.close()
+            Toast.makeText(this, "Saiu", Toast.LENGTH_LONG).show()
             true
         }
 
